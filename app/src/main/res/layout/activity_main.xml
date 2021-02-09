@@ -90,21 +90,6 @@
         android:textColor="#9affffff"
         android:textSize="10sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="70dp"
-        android:fontFamily="@font/gotham"
-        android:text="Shendrikov Jack\nGroup: IO-82\nAT: IO-8227"
-        android:gravity="center"
-        android:lineSpacingExtra="4dp"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        android:shadowColor="@color/text_shadow"
-        android:shadowDx="3"
-        android:shadowDy="1"
-        android:shadowRadius="3"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -137,16 +122,31 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/openPortfolio"
+                android:id="@+id/open_portfolio"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/btn_white"
                 android:fontFamily="@font/calibri"
                 android:text="Visit Website"
                 android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="#96ffffff"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/open_infograph"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/btn_white"
+                android:fontFamily="@font/calibri"
+                android:text="Go Next"
+                android:textAllCaps="false"
+                android:textStyle="bold"
                 android:textColor="#96ffffff"
                 android:textSize="16dp"
-                android:textStyle="bold" />
+                android:onClick="openInfograph" />
 
         </LinearLayout>
 

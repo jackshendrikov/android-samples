@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        Button button = findViewById(R.id.openPortfolio);
+        Button button = findViewById(R.id.open_portfolio);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -89,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(openSite);
             }
         });
+    }
+
+    public void openInfograph(View v) {
+        Intent intent = new Intent(this, InfographicActivity.class);
+        startActivity(intent);
     }
 }
