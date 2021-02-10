@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageBook"
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:contentDescription="Book Cover"
+        android:layout_marginRight="12dp"
+        tools:src="@drawable/noimage"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/titleBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+
+            app:fontFamily="@font/gotham"
+            tools:text="Title"/>
+
+        <TextView
+            android:id="@+id/subtitleBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:maxLines="2"
+            android:textColor="@color/colorPrimary"
+
+            app:fontFamily="@font/gotham"
+            tools:text="Subtitle"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/isbnTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="ISBN:"/>
+
+            <TextView
+                android:id="@+id/isbnBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="ISBN"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/priceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="Price:"/>
+
+            <TextView
+                android:id="@+id/priceBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="$0.00" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

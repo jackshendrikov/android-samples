@@ -100,18 +100,18 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/calibri"
-            android:text="Hey, cool stuff is also on my website, check it out)"
-            android:textAlignment="center"
-            android:textColor="#fbf2ff"
-            android:textSize="14sp"
-            android:shadowColor="@color/text_shadow"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="3"/>
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibri"-->
+<!--            android:text="Hey, cool stuff is also on my website, check it out)"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="#fbf2ff"-->
+<!--            android:textSize="14sp"-->
+<!--            android:shadowColor="@color/text_shadow"-->
+<!--            android:shadowDx="1"-->
+<!--            android:shadowDy="1"-->
+<!--            android:shadowRadius="3"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -122,31 +122,32 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/open_portfolio"
+                android:id="@+id/open_infograph"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
                 android:background="@drawable/btn_white"
                 android:fontFamily="@font/calibri"
-                android:text="Visit Website"
+                android:text="Drawing"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="#96ffffff"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:onClick="openInfograph"/>
 
             <Button
-                android:id="@+id/open_infograph"
+                android:id="@+id/open_books"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:background="@drawable/btn_white"
                 android:fontFamily="@font/calibri"
-                android:text="Go Next"
+                android:text="Book Lists"
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="#96ffffff"
                 android:textSize="16dp"
-                android:onClick="openInfograph" />
+                android:onClick="openBooks" />
 
         </LinearLayout>
 
@@ -156,7 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/calibri"
-            android:text="Note: The mobile version of the site is still under development, so it is desirable to watch from a PC"
+            android:text="Author: Jack Shendrikov, IO-82, 8227"
             android:textAlignment="center"
             android:textColor="#96ffffff"
             android:textSize="14sp" />

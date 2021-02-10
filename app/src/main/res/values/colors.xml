@@ -10,6 +10,7 @@
 
     <color name="black">#262626</color>
     <color name="dark_black">#181818</color>
+    <color name="light_black">#4d4d4d</color>
     <color name="white">#FFFFFF</color>
     <color name="orange">#FF8C00</color>
     <color name="blue">#0F89CA</color>
