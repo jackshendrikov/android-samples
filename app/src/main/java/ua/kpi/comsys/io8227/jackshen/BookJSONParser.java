@@ -1,9 +1,8 @@
 package ua.kpi.comsys.io8227.jackshen;
 
-import android.text.TextUtils;
+import android.content.Context;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,15 +10,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 /** Helper methods to request and retrieve book data from a specified JSON */
 final class BookJSONParser {
+
+    private static int[] booksData = {
+            R.raw._9780321856715,
+            R.raw._9780321862969,
+            R.raw._9781118841471,
+            R.raw._9781430236054,
+            R.raw._9781430237105,
+            R.raw._9781430238072,
+            R.raw._9781430245124,
+            R.raw._9781430260226,
+            R.raw._9781449308360,
+            R.raw._9781449342753
+    };
 
     /** Tag for the log messages */
     private static final String LOG_MSG = BookJSONParser.class.getSimpleName();
@@ -28,146 +37,45 @@ final class BookJSONParser {
      * We are creating a private constructor because no one else should create
      * the {@link BookJSONParser} object.
      */
-    private BookJSONParser() {
-    }
+    private BookJSONParser() { }
 
-    /**
-     * Query given JSON and return a list of {@link String} objects.
-     *
-     * @param requestUrl - our URL as a {@link String} object
-     * @return the list of {@link Book}s
-     */
-    static List<Book> getBookData(String requestUrl) {
-        URL url = makeUrl(requestUrl);
-
-        // Perform HTTP request to the URL and receive a JSON response back
-        String jsonResponse = null;
-        try {
-            jsonResponse = makeHttpRequest(url);
-        } catch (IOException err) {
-            Log.e(LOG_MSG, "Problem making the HTTP request.", err);
-        }
-
-        // Extract relevant fields from the JSON response and create a list of {@link Book}s
-        // Then return the list of {@link Book}s
-        return extractDataFromJson(jsonResponse);
-    }
-
-    /** Returns new URL object from the given string URL. */
-    private static URL makeUrl(String strUrl) {
-        // Initialize an empty {@link URL} object to hold the parsed URL from the strUrl
-        URL url = null;
-
-        // Parse valid URL from param strUrl and handle Malformed urls
-        try {
-            url = new URL(strUrl);
-        } catch (MalformedURLException err) {
-            Log.e(LOG_MSG, "Problem building the URL!", err);
-        }
-
-        // Return valid URL
-        return url;
-    }
-
-    /** Make an HTTP request to the given URL and return a String as the response. */
-    private static String makeHttpRequest(URL url) throws IOException {
-        // Initialize variable to hold the parsed JSON response
-        String jsonResponse = "";
-
-        // Return response if URL is null
-        if (url == null) {
-            return jsonResponse;
-        }
-
-        // Initialize HTTP connection object
-        HttpURLConnection connection = null;
-
-        // Initialize {@link InputStream} to hold response from request
-        InputStream inputStream = null;
-        try {
-            // Establish connection to the URL
-            connection = (HttpURLConnection) url.openConnection();
-
-            // Set request type
-            connection.setRequestMethod("GET");
-
-            // Setting how long to wait on the request (in milliseconds)
-            connection.setReadTimeout(10000);
-            connection.setConnectTimeout(15000);
-
-            // Establish connection to the URL
-            connection.connect();
-
-            // Check for successful connection
-            if (connection.getResponseCode() == 200) {
-                inputStream = connection.getInputStream();
-                jsonResponse = readFromStream(inputStream);
-            } else {
-                Log.e(LOG_MSG, "Error response code: " + connection.getResponseCode());
-            }
-        } catch (IOException err) {
-            Log.e(LOG_MSG, "Problem retrieving the book JSON results.", err);
-        } finally {
-            if (connection != null) {
-                // Disconnect the connection after successfully making the HTTP request
-                connection.disconnect();
-            }
-
-            if (inputStream != null) {
-                // Close the stream after successfully parsing the request
-                // This also can throw an IOException
-                inputStream.close();
-            }
-        }
-
-        // Return JSON as a {@link String}
-        return jsonResponse;
-    }
 
     /**
      * Convert the {@link InputStream} into a String which contains the whole JSON response.
      */
-    private static String readFromStream(InputStream inputStream) throws IOException {
+    private static String readFromStream(Context context, int resID) throws IOException {
         StringBuilder output = new StringBuilder();
-        if (inputStream != null) {
-            // Decode the bits
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
 
-            // Buffer the decoded characters
-            BufferedReader reader = new BufferedReader(inputStreamReader);
+        // Decode the bits
+        InputStreamReader inputStreamReader = new InputStreamReader(context.getResources().openRawResource(resID), Charset.forName("UTF-8"));
 
-            // Store a line of characters from the BufferedReader
-            String line = reader.readLine();
+        // Buffer the decoded characters
+        BufferedReader reader = new BufferedReader(inputStreamReader);
 
-            // If not end of buffered input stream, read next line and add to output
-            while (line != null) {
-                output.append(line);
-                line = reader.readLine();
-            }
+        // Store a line of characters from the BufferedReader
+        String line = reader.readLine();
+
+        // If not end of buffered input stream, read next line and add to output
+        while (line != null) {
+            output.append(line);
+            line = reader.readLine();
         }
 
         // Convert chars sequence from the builder into a string and return
         return output.toString();
     }
 
-    private static List<Book> extractDataFromJson(String bookJSON) {
-        // Exit if no data was returned from the HTTP request
-        if (TextUtils.isEmpty(bookJSON))
-            return null;
 
+    public static List<Book> extractDataFromJson(Context context) {
         // Initialize list of strings to hold the extracted books
         List<Book> books = new ArrayList<>();
 
         try {
-            // Create JSON object from response
-            JSONObject rawJSONResponse = new JSONObject(bookJSON);
+            for (int value : booksData) {
+                String rawJSONResponse = readFromStream(context, value);
 
-            // Extract the array that holds the books
-            JSONArray bookArray = rawJSONResponse.getJSONArray("books");
-
-            for (int i = 0; i < bookArray.length(); i++) {
                 // Get the current book
-                JSONObject currentBook = bookArray.getJSONObject(i);
+                JSONObject currentBook = new JSONObject(rawJSONResponse);
 
                 // Get the book's title
                 String title = currentBook.getString("title");
@@ -175,8 +83,41 @@ final class BookJSONParser {
                 // Get the book's subtitle
                 String subtitle = currentBook.getString("subtitle");
 
+                // Extract authors only if they exist
+                String authors = "";
+                if (currentBook.has("authors")) {
+                    // Extract array "authors"
+                    String[] authorsArray = currentBook.getString("authors").split(",");
+
+                    for (int j = 0; j < authorsArray.length; j++) {
+                        if (j == 0)
+                            authors += authorsArray[j];
+                        else if (j <= 2)
+                            authors += " | " + authorsArray[j];
+                        else
+                            authors += " and others";
+                    }
+                } else {
+                    authors = "Unknown authors";
+                }
+
+                // Get the book's publisher
+                String publisher = currentBook.getString("publisher");
+
                 // Get the book's ISBN number
                 String isbn13 = currentBook.getString("isbn13");
+
+                // Get the book's pages
+                String pages = currentBook.getString("pages");
+
+                // Get the book's year of publish
+                String year = currentBook.getString("year");
+
+                // Get the book's rating
+                String rating = currentBook.getString("rating");
+
+                // Get the book's description
+                String description = currentBook.getString("desc");
 
                 // Get the book's price
                 String price = currentBook.getString("price");
@@ -186,7 +127,8 @@ final class BookJSONParser {
 
                 // Create a new {@link Book} object with the title, subtitle, isbn13, price
                 // and imageUrl from the JSON response.
-                Book book = new Book(title, subtitle, isbn13, price, imageUrl);
+                Book book = new Book(title, subtitle, authors, publisher, isbn13, pages, year,
+                        rating, description, price, imageUrl);
 
                 // Add the new {@link Book} to the list of books.
                 books.add(book);
@@ -195,6 +137,8 @@ final class BookJSONParser {
         } catch (JSONException e) {
             // Catch the exception from the 'try' block and print a log message
             Log.e("BookJSONParser", "Problem parsing the book JSON results", e);
+        } catch (IOException e) {
+            Log.e(LOG_MSG, "Problem retrieving the book JSON results.", e);
         }
 
         // Return the list of books

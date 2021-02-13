@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_main_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:scaleType="centerCrop"
+    android:background="@drawable/yellow"
+    tools:context=".AddBookActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblInputTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Title:"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/inputTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimary"
+            android:autofillHints="Enter Title"
+            android:hint="Enter Title"
+            app:fontFamily="@font/gotham"
+            android:inputType="textVisiblePassword" />
+
+        <TextView
+            android:id="@+id/lblInputSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:text="Subtitle:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/inputSubtitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:autofillHints="Enter Subtitle"
+            android:hint="Enter Subtitle"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:inputType="textVisiblePassword" />
+
+        <TextView
+            android:id="@+id/lblInputPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Price:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/inputPrice"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:autofillHints="Enter Price"
+            android:hint="Enter Price"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/lblInputISBN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="ISBN:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/inputISBN"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp"
+            android:maxLength="13"
+            android:autofillHints="Enter ISBN"
+            android:hint="Enter ISBN"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/lblInputRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Rate:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimary"
+            app:fontFamily="@font/gotham"
+            android:textSize="20sp" />
+
+
+        <RatingBar
+            android:id="@+id/inputRate"
+            style="?android:attr/ratingBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/StyledRateBar"
+            android:layout_gravity="center"
+            android:layout_marginBottom="14dp"/>
+
+        <Button
+            android:id="@+id/button_add"
+            style="@style/AppTheme.Button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_black"
+            android:layout_gravity="center"
+            android:text="Add Book"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:onClick="onClickAdd"
+            app:fontFamily="@font/calibri" />
+
+    </LinearLayout>
+
+</ScrollView>

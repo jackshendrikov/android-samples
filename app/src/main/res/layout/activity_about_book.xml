@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:scaleType="centerCrop"
+    android:background="@drawable/yellow"
+    tools:context=".AboutBookActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:fontFamily="@font/gotham"
+            tools:text="An interesting book" />
+
+        <TextView
+            android:id="@+id/authors_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingBottom="4dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            app:fontFamily="@font/gotham"
+            tools:text="A famous author" />
+
+        <ImageView
+            android:id="@+id/image_full"
+            android:layout_width="200dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:contentDescription="Book Cover"
+            tools:src="@drawable/noimage" />
+
+        <TextView
+            android:id="@+id/subtitle_full"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"/>
+
+        <RatingBar
+            android:id="@+id/rate_full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:theme="@style/StyledRateBar"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:numStars="5"
+            android:stepSize="1.0"
+            android:rating="0.0"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/price_full_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="18dp"
+                android:textSize="20dp"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="Price:"/>
+
+            <TextView
+                android:id="@+id/price_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="20dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="Price"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/publisher_full_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="18dp"
+                android:textSize="20dp"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="Publisher:"/>
+
+            <TextView
+                android:id="@+id/publisher_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="20dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="Publisher"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/isbn_full_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="18dp"
+                android:textSize="20dp"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="ISBN:"/>
+
+            <TextView
+                android:id="@+id/isbn_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="20dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="ISBN"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/pages_full_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="18dp"
+                android:textSize="20dp"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="Pages:"/>
+
+            <TextView
+                android:id="@+id/pages_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="20dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="Pages"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/year_full_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="18dp"
+                android:textSize="20dp"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="Year:"/>
+
+            <TextView
+                android:id="@+id/year_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="20dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="Year"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/description_full_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="18dp"
+                android:textSize="20dp"
+                android:textColor="@color/textInputLayout"
+                app:fontFamily="@font/gotham"
+                android:text="Description:"/>
+
+            <TextView
+                android:id="@+id/description_full"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:textSize="20dp"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                app:fontFamily="@font/gotham"
+                tools:text="Description"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

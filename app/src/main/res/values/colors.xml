@@ -14,4 +14,10 @@
     <color name="white">#FFFFFF</color>
     <color name="orange">#FF8C00</color>
     <color name="blue">#0F89CA</color>
+
+    <color name="rating1">#ED3F0C</color>
+    <color name="rating2">#ED970C</color>
+    <color name="rating3">#EAED0C</color>
+    <color name="rating4">#8BED0C</color>
+    <color name="rating5">#0CED2D</color>
 </resources>

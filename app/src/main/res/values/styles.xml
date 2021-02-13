@@ -1,5 +1,6 @@
 <resources>
 
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -19,6 +20,15 @@
         <item name="colorControlHighlight">@color/textInputLayout</item>
         <item name="colorAccent">@color/textInputLayout</item>
         <item name="android:textColorHint">@color/textInputLayout</item>
+    </style>
+
+    <style name="StyledRateBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#f7f7f7</item>
+        <item name="colorControlActivated">#dfdfe5</item>
+    </style>
+
+    <style name="MyHintStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 </resources>

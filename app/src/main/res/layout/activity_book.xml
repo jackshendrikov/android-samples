@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".BookActivity">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -16,31 +19,99 @@
 
     </FrameLayout>
 
-    <ListView
-        android:id="@+id/list"
+
+    <RelativeLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/buttonSearch"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_search_black_24dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_component"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/buttonSearch">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="Search"
+                android:hint="Search:"
+                android:textColorHint="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimary"
+                app:hintTextAppearance="@style/MyHintStyle"
+                android:imeOptions="actionDone"
+                android:textColor="@color/colorPrimary"
+                android:inputType="textAutoComplete"
+                app:fontFamily="@font/gotham" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/search_bar"
+        android:background="@color/colorPrimary" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="12dp"
-        android:dividerHeight="1dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@id/separator">
 
-    <TextView
-        android:id="@+id/empty_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"/>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:text="+"
+            android:textSize="40sp"
+            android:background="@drawable/ripple"
+            android:id="@+id/buttonAdd"
+            android:layout_margin="16dp"
+            android:elevation="3dp"
+            android:paddingBottom="16dp"
+            app:fontFamily="@font/gotham"
+            android:onClick="onClickAdd"
+            android:layout_gravity="right|bottom"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+
+        <com.baoyz.swipemenulistview.SwipeMenuListView
+            android:id="@+id/list"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:dividerHeight="1dp" />
+
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_centerInParent="true"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+    </RelativeLayout>
+
 
 
 </RelativeLayout>

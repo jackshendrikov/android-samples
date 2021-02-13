@@ -8,19 +8,38 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/imageBook"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="125dp"
-        android:contentDescription="Book Cover"
-        android:layout_marginRight="12dp"
-        tools:src="@drawable/noimage"/>
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp">
+
+        <ImageView
+            android:id="@+id/imageBook"
+            android:layout_width="wrap_content"
+            android:layout_height="125dp"
+            android:contentDescription="Book Cover"
+            tools:src="@drawable/noimage"/>
+
+        <TextView
+            android:id="@+id/ratingBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/magnitude_circle"
+            android:layout_below="@id/imageBook"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            app:fontFamily="@font/gotham"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="0.0" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
 
         <TextView
             android:id="@+id/titleBook"
@@ -28,8 +47,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            android:textAllCaps="true"
-
+            android:textSize="18dp"
             app:fontFamily="@font/gotham"
             tools:text="Title"/>
 
@@ -38,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="italic"
+            android:textSize="16dp"
             android:maxLines="2"
             android:textColor="@color/colorPrimary"
 
@@ -55,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
+                android:textSize="16dp"
                 android:textColor="@color/textInputLayout"
                 app:fontFamily="@font/gotham"
                 android:text="ISBN:"/>
@@ -68,6 +88,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:maxLines="2"
+                android:textSize="16dp"
                 android:textColor="@color/colorPrimary"
                 app:fontFamily="@font/gotham"
                 tools:text="ISBN"/>
@@ -85,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textInputLayout"
                 app:fontFamily="@font/gotham"
+                android:textSize="16dp"
                 android:text="Price:"/>
 
             <TextView
@@ -94,6 +116,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:maxLines="2"
+                android:textSize="16dp"
                 android:textColor="@color/colorPrimary"
                 app:fontFamily="@font/gotham"
                 tools:text="$0.00" />
