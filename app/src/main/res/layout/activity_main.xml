@@ -21,7 +21,6 @@
 
     </FrameLayout>
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -100,18 +99,51 @@
         android:paddingLeft="32dp"
         android:paddingRight="32dp">
 
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/calibri"-->
-<!--            android:text="Hey, cool stuff is also on my website, check it out)"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textColor="#fbf2ff"-->
-<!--            android:textSize="14sp"-->
-<!--            android:shadowColor="@color/text_shadow"-->
-<!--            android:shadowDx="1"-->
-<!--            android:shadowDy="1"-->
-<!--            android:shadowRadius="3"/>-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibri"
+            android:text="Author: Jack Shendrikov, IO-82, 8227"
+            android:textAlignment="center"
+            android:textColor="#fbf2ff"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/open_website"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/btn_white"
+                android:fontFamily="@font/calibri"
+                android:text="Website"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="#96ffffff"
+                android:textSize="16dp"
+                android:onClick="openWebsite"/>
+
+            <Button
+                android:id="@+id/open_gallery"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/btn_white"
+                android:fontFamily="@font/calibri"
+                android:text="Image Lists"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="#96ffffff"
+                android:textSize="16dp"
+                android:onClick="openGallery" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -151,15 +183,6 @@
 
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/calibri"
-            android:text="Author: Jack Shendrikov, IO-82, 8227"
-            android:textAlignment="center"
-            android:textColor="#96ffffff"
-            android:textSize="14sp" />
     </LinearLayout>
+
 </RelativeLayout>

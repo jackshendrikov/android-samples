@@ -269,8 +269,7 @@ public class BookActivity extends AppCompatActivity {
 
     /**
      * Set up touch listeners on all parts of the UI besides the {@link EditText} so that the user
-     * can click out to hide the soft keypad and choose the necessary filter radio boxes befitting
-     * their need
+     * can click out to hide the soft keypad
      */
     public void setupUI(View view) {
         // Set up touch listener for non-text box views to hide keyboard
@@ -317,4 +316,6 @@ public class BookActivity extends AppCompatActivity {
             inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         }
     }
+
+
 }

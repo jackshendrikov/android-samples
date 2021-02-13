@@ -3,12 +3,15 @@ package ua.kpi.comsys.io8227.jackshen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,14 +82,16 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-//        Button button = findViewById(R.id.open_portfolio);
-//        button.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                Intent openSite = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jackshen.herokuapp.com/"));
-//                startActivity(openSite);
-//            }
-//        });
+    }
+
+    public void openWebsite(View v) {
+        Intent openSite = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jackshen.herokuapp.com/"));
+        startActivity(openSite);
+    }
+
+    public void openGallery(View v) {
+        Intent intent = new Intent(this, GalleryActivity.class);
+        startActivity(intent);
     }
 
     public void openBooks(View v) {
