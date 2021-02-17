@@ -89,11 +89,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".GalleryActivity"
+        <activity android:name=".PictureActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>
-                <action android:name="android.intent.action.GalleryActivity" />
+                <action android:name="android.intent.action.PictureActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

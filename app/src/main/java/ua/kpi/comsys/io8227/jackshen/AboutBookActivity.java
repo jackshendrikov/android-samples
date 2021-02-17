@@ -16,6 +16,7 @@ public class AboutBookActivity  extends AppCompatActivity {
         Book fullBook = (Book) getIntent().getSerializableExtra("book_full");
 
         ImageView cover = findViewById(R.id.image_full);
+        assert fullBook != null;
         if (fullBook.getImageUrl().equals("")) {
             cover.setImageResource(R.drawable.noimage);
         } else {

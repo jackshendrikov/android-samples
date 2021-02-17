@@ -78,6 +78,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
         // Set the color on the rating circle
         ratingCircle.setColor(ratingColor);
 
+
         // Find the TextView with view ID titleBook
         TextView titleView = listItemView.findViewById(R.id.titleBook);
 
@@ -154,6 +155,8 @@ public class BookAdapter extends ArrayAdapter<Book> {
         DecimalFormat ratingFormat = new DecimalFormat("0.0");
         return ratingFormat.format(rating);
     }
+
+
 
     /** Class to download an image from URL */
     public static class DownloadImage extends AsyncTask<String, Void, Bitmap> {

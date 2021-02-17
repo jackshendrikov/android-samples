@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen.exception;
+package ua.kpi.comsys.io8227.jackshen.coordinateJS.exception;
 
 
 public class GeoCoordException extends RuntimeException {

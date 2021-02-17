@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen.calculator;
+package ua.kpi.comsys.io8227.jackshen.coordinateJS.calculator.coordinateJS;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,11 +6,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import ua.kpi.comsys.io8227.jackshen.Latitude;
-import ua.kpi.comsys.io8227.jackshen.Longitude;
-import ua.kpi.comsys.io8227.jackshen.CoordinateJS;
-import ua.kpi.comsys.io8227.jackshen.calculator.DistanceCalculator.Unit;
-import ua.kpi.comsys.io8227.jackshen.exception.GeoCoordException;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.Latitude;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.Longitude;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.CoordinateJS;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.calculator.DistanceCalculator;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.calculator.DistanceCalculator.Unit;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.exception.GeoCoordException;
 
 
 public class DistanceCalculatorTest {

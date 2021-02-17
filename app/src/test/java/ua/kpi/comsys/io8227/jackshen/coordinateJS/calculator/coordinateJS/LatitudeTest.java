@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.coordinateJS.calculator.coordinateJS;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import ua.kpi.comsys.io8227.jackshen.exception.GeoCoordException;
+
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.Latitude;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.exception.GeoCoordException;
 
 
 public class LatitudeTest {
