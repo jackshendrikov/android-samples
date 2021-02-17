@@ -5,17 +5,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,23 +42,28 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureViewHolder> {
     @Override
     public void onBindViewHolder(PictureViewHolder holder, final int position) {
         holder.mImageView.setImageDrawable(mImages.get(position));
-        if (position % 8 == 1) {
-            holder.mImageView.getLayoutParams().height = (int) mContext.getResources().getDimension(R.dimen.imageview_height);
-            holder.mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            holder.mImageView.requestLayout();
-
-        }
+//        if (position % 8 == 1) {
+//            holder.mImageView.getLayoutParams().height = (int) mContext.getResources().getDimension(R.dimen.imageview_height);
+//            holder.mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            holder.mImageView.requestLayout();
+//
+//        }
 //        Picture currentImage = getItem(position);
 //        new DownloadImage(holder.mImageView).execute(currentImage.getImageUrl());
+
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PictureAboutActivity.class);
+                intent.putExtra("image_full",  mImageList.get(position));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mImageList.size();
-    }
-
-    public Picture getItem(int position) {
-        return mImageList.get(position);
+        return mImages.size();
     }
 
 

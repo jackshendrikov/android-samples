@@ -44,6 +44,8 @@ final class PictureJSONParser {
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     static List<Picture> getPictureData(String requestUrl) {
+        mPreviewImageUrls.clear();
+
         // Create URL object
         URL url = makeUrl(requestUrl);
 
@@ -177,14 +179,40 @@ final class PictureJSONParser {
                 // Get the current image
                 JSONObject currentImage = imageArray.getJSONObject(i);
 
-                // Get the URL of image's cover
+                // Get the URL of image's
                 String imageUrl = currentImage.getString("webformatURL");
+
+                // Get width of the image
+                String imageWidth = currentImage.getString("imageWidth");
+
+                // Get height of the image
+                String imageHeight = currentImage.getString("imageHeight");
+
+                // Get number of image views
+                String views = currentImage.getString("views");
+
+                // Get number of image downloads
+                String downloads = currentImage.getString("downloads");
+
+                // Get number of image saves
+                String favorites = currentImage.getString("favorites");
+
+                // Get number of image likes
+                String likes = currentImage.getString("likes");
+
+                // Get user name
+                String user = currentImage.getString("user");
+
+                // Get user image
+                String userImageURL = currentImage.getString("userImageURL");
+
 
                 mPreviewImageUrls.add(imageUrl);
 
                 // Create a new {@link Picture} object with the title, subtitle, isbn13, price
                 // and imageUrl from the JSON response.
-                Picture image = new Picture(imageUrl);
+                Picture image = new Picture(imageUrl, imageWidth, imageHeight, views, downloads,
+                        favorites, likes, user, userImageURL);
 
                 // Add the new {@link Picture} to the list of images.
                 images.add(image);

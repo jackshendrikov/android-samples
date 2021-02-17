@@ -7,13 +7,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AboutBookActivity  extends AppCompatActivity {
+
+public class BookAboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_book);
 
         Book fullBook = (Book) getIntent().getSerializableExtra("book_full");
+
 
         ImageView cover = findViewById(R.id.image_full);
         assert fullBook != null;

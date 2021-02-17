@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AddBookActivity"
+        <activity android:name=".BookAddActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -79,7 +79,7 @@
         </activity>
 
 
-        <activity android:name=".AboutBookActivity"
+        <activity android:name=".BookAboutActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -94,6 +94,16 @@
             android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.PictureActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".PictureAboutActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.PictureAboutActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

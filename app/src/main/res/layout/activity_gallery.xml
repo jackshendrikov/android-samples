@@ -80,8 +80,7 @@
             android:id="@+id/image_recycleview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/border_black"
-            android:padding="3dp"
+            android:padding="5dp"
             android:scrollbars="vertical" />
 
         <TextView
@@ -101,8 +100,5 @@
             android:layout_centerInParent="true"/>
 
     </RelativeLayout>
-
-
-
 
 </RelativeLayout>

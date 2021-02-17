@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -103,7 +104,9 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
                 4, // number of columns
                 1f // how big is default item
         );
+
         imageListView.setLayoutManager(mGridLayoutManager);
+        imageListView.setBackground(ContextCompat.getDrawable(this, R.drawable.border_black));
 
         mLoadingIndicator = findViewById(R.id.progress_bar);
         mLoadingIndicator.setVisibility(View.GONE);
@@ -166,7 +169,6 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
         });
 
 
-
         /*
          * Initialize the loader
          */
@@ -200,7 +202,7 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
                     String imageName = URLEncoder.encode(searchText, "UTF-8");
 
                     // Set the URL with the suitable imageName
-                    mQueryText = "https://pixabay.com/api/" + "?key=" + "19193969-87191e5db266905fe8936d565" + "&q=" + imageName + "&page=" + mPageNum;
+                    mQueryText = "https://pixabay.com/api/" + "?key=" + "19193969-87191e5db266905fe8936d565" + "&q=" + imageName + "&per_page=" + mPageNum;
 
                     // Show the loading indicator.
                     mLoadingIndicator.setVisibility(View.VISIBLE);
@@ -309,7 +311,6 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
         // data set. This will trigger the ListView to update
         if (data != null && !data.isEmpty()) {
             images.addAll(data);
-
             HttpRequestImgHelper requestImgHelper = new HttpRequestImgHelper(PictureJSONParser.mPreviewImageUrls, this);
             requestImgHelper.setOnTaskExecFinishedEvent(new HttpRequestImgHelper.OnTaskExecFinished() {
                 @Override

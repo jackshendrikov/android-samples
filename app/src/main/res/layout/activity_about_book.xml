@@ -7,7 +7,7 @@
     android:padding="8dp"
     android:scaleType="centerCrop"
     android:background="@drawable/yellow"
-    tools:context=".AboutBookActivity">
+    tools:context=".BookAboutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

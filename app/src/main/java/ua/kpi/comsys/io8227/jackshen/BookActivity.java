@@ -175,7 +175,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 Book currentBook = mAdapter.getItem(position);
 
-                Intent intent = new Intent(BookActivity.this, AboutBookActivity.class);
+                Intent intent = new Intent(BookActivity.this, BookAboutActivity.class);
                 intent.putExtra("book_full", currentBook);
 
                 startActivity(intent);

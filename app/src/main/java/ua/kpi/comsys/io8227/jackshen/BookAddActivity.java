@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static ua.kpi.comsys.io8227.jackshen.BookActivity.hideSoftKeyboard;
 
-public class AddBookActivity extends AppCompatActivity {
+public class BookAddActivity extends AppCompatActivity {
 
     String rate = "0.0";
 
@@ -96,7 +96,7 @@ public class AddBookActivity extends AppCompatActivity {
                 public boolean onTouch(View v, MotionEvent event) {
                     // Hide keypad
                     v.performClick();
-                    hideSoftKeyboard(AddBookActivity.this);
+                    hideSoftKeyboard(BookAddActivity.this);
                     return false;
                 }
             });
