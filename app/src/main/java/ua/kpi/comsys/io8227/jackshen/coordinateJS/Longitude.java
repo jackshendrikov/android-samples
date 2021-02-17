@@ -1,8 +1,8 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.coordinateJS;
 
-import ua.kpi.comsys.io8227.jackshen.exception.GeoCoordException;
-import ua.kpi.comsys.io8227.jackshen.coordinate.AbsGeoCoordinate;
-import ua.kpi.comsys.io8227.jackshen.coordinate.LatLngDirection;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.exception.GeoCoordException;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.coordinate.AbsGeoCoordinate;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.coordinate.LatLngDirection;
 
 /**
  * Longitude indicates whether a location is East or West of the prime meridian (located at longitude 0).

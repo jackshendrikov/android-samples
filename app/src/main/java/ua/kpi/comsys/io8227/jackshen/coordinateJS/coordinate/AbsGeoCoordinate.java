@@ -1,12 +1,12 @@
-package ua.kpi.comsys.io8227.jackshen.coordinate;
+package ua.kpi.comsys.io8227.jackshen.coordinateJS.coordinate;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-import ua.kpi.comsys.io8227.jackshen.Latitude;
-import ua.kpi.comsys.io8227.jackshen.Longitude;
-import ua.kpi.comsys.io8227.jackshen.exception.GeoCoordException;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.Latitude;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.Longitude;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.exception.GeoCoordException;
 
 /**
  * This class is used as an internal implementation logic between Latitude and Longitude.

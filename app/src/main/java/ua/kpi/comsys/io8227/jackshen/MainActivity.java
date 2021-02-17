@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openGallery(View v) {
-        Intent intent = new Intent(this, GalleryActivity.class);
+        Intent intent = new Intent(this, PictureActivity.class);
         startActivity(intent);
     }
 

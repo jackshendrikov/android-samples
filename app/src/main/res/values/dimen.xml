@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="shape_size">56dp</dimen>
+    <dimen name="imageview_height">285dp</dimen>
 
 </resources>

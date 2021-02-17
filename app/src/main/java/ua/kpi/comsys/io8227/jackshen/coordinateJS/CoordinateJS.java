@@ -1,6 +1,6 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.coordinateJS;
 
-import ua.kpi.comsys.io8227.jackshen.exception.GeoCoordException;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.exception.GeoCoordException;
 
 /**
  * This class is a little wrapper of Latitude and Longitude.
@@ -33,7 +33,7 @@ public class CoordinateJS {
     *
     * @throws GeoCoordException if any parameter is null
     */
-   CoordinateJS(final Latitude lat, final Longitude lng, final String name) {
+   public CoordinateJS(final Latitude lat, final Longitude lng, final String name) {
       this(lat, lng);
       setName(name);
    }
@@ -62,7 +62,7 @@ public class CoordinateJS {
       this.lng = lng;
    }
 
-   String getName() {
+   public String getName() {
       return name;
    }
 

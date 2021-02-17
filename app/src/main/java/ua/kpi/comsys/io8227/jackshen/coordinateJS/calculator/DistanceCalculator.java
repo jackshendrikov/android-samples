@@ -1,9 +1,9 @@
-package ua.kpi.comsys.io8227.jackshen.calculator;
+package ua.kpi.comsys.io8227.jackshen.coordinateJS.calculator;
 
-import ua.kpi.comsys.io8227.jackshen.Latitude;
-import ua.kpi.comsys.io8227.jackshen.Longitude;
-import ua.kpi.comsys.io8227.jackshen.CoordinateJS;
-import ua.kpi.comsys.io8227.jackshen.exception.GeoCoordException;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.Latitude;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.Longitude;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.CoordinateJS;
+import ua.kpi.comsys.io8227.jackshen.coordinateJS.exception.GeoCoordException;
 
 /**
  * This class calculates the distance between the coordinates using the Haversine formula, which I
@@ -13,7 +13,7 @@ import ua.kpi.comsys.io8227.jackshen.exception.GeoCoordException;
  *
  * @see <a href="https://uk.wikipedia.org/wiki/%D0%A4%D0%BE%D1%80%D0%BC%D1%83%D0%BB%D0%B0_%D0%B3%D0%B0%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D0%BD%D1%83%D1%81%D0%B0">Haversine formula</a>
  */
-class DistanceCalculator {
+public class DistanceCalculator {
 
    public enum Unit {
 
@@ -45,7 +45,7 @@ class DistanceCalculator {
     *
     * @return The total distance traveled, expressed in terms of unit
     */
-   static double distance(final Unit unit, final CoordinateJS ... coordinates) {
+   public static double distance(final Unit unit, final CoordinateJS... coordinates) {
       if (unit == null) {
          throw new GeoCoordException("Unit is null");
       }
@@ -100,7 +100,7 @@ class DistanceCalculator {
     *
     * @return new CoordinateJS object, string representation will be in the form like {xx°yy'zz"Z , xx°yy'zz"Z}
     */
-   static CoordinateJS avarageCoord(final CoordinateJS point1, final CoordinateJS point2) {
+   public static CoordinateJS avarageCoord(final CoordinateJS point1, final CoordinateJS point2) {
 
       if (point1 == null || point2 == null) throw new GeoCoordException("Coordinates are null");
 

@@ -3,8 +3,8 @@ package ua.kpi.comsys.io8227.jackshen;
 import android.app.LoaderManager;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.Loader;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,11 +22,8 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.UnsupportedEncodingException;
@@ -36,27 +32,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class BookActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>> {
+public class PictureActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Picture>> {
 
-    /** URL for book data */
+    /** URL for image data */
     public static final String REQUEST_URL = "";
 
     /**
-     * Constant value for the book loader ID.
+     * Constant value for the image loader ID.
      * We can choose any int, it`s really needed for multiple loaders
      */
-    private static final int BOOK_LOADER_ID = 1;
+    private static final int IMAGE_LOADER_ID = 1;
 
-    /** Adapter for the list of books */
-    private BookAdapter mAdapter;
+    /** Adapter for the list of images */
+    private PictureAdapter mAdapter;
 
-    /** Handler for the list of books */
-    List<Book> books = new ArrayList<>();
+    /** Handler for the list of images */
+    List<Picture> images = new ArrayList<>();
+    List<Drawable> mImageDrawableSet = new ArrayList<>();
 
-    /** InputText for the book search */
+    /** InputText for the image search */
     private TextInputEditText mSearchText;
 
-    /** ImageButton for the book search */
+    /** ImageButton for the image search */
     private ImageView mSearchButton;
 
     /** TextView that is displayed when the list is empty */
@@ -69,6 +66,12 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private String mQueryText;
 
+    private SpannedGridLayoutManager mGridLayoutManager;
+
+    private int mPageNum = 24;
+
+    RecyclerView imageListView;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +80,30 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
 
         // Inflate the activity's UI
-        setContentView(R.layout.activity_book);
+        setContentView(R.layout.activity_gallery);
 
         // Setup UI to hide soft keyboard when clicked outside the {@link EditText}
         setupUI(findViewById(R.id.main_parent));
 
-        // Find a reference to the {@link bookListView} in the layout
-        SwipeMenuListView bookListView = findViewById(R.id.list);
+        // Find a reference to the {@link imageListView} in the layout
+        imageListView = findViewById(R.id.image_recycleview);
+
+        mGridLayoutManager = new SpannedGridLayoutManager(
+                new SpannedGridLayoutManager.GridSpanLookup() {
+                    @Override
+                    public SpannedGridLayoutManager.SpanInfo getSpanInfo(int position) {
+                        // Conditions for 2x2 items
+                        if (position % 8 == 1) {
+                            return new SpannedGridLayoutManager.SpanInfo(3, 3);
+                        } else {
+                            return new SpannedGridLayoutManager.SpanInfo(1, 1);
+                        }
+                    }
+                },
+                4, // number of columns
+                1f // how big is default item
+        );
+        imageListView.setLayoutManager(mGridLayoutManager);
 
         mLoadingIndicator = findViewById(R.id.progress_bar);
         mLoadingIndicator.setVisibility(View.GONE);
@@ -94,31 +114,20 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Set empty view when there is no data
         mEmptyTextView = findViewById(R.id.empty_view);
-        bookListView.setEmptyView(mEmptyTextView);
+        if (images.isEmpty()) {
+            mEmptyTextView.setVisibility(View.VISIBLE);
+            imageListView.setVisibility(View.GONE);
+        } else {
+            imageListView.setVisibility(View.VISIBLE);
+            mEmptyTextView.setVisibility(View.GONE);
+        }
 
-        // Create a new adapter that takes an empty list of books as input
-        mAdapter = new BookAdapter(this, books);
+        // Create a new adapter that takes an empty list of images as input
+        mAdapter = new PictureAdapter(this, images, mImageDrawableSet);
 
-        // Set the adapter on the {@link bookListView} so the list can be populated in UI
-        bookListView.setAdapter(mAdapter);
+        // Set the adapter on the {@link imageListView} so the list can be populated in UI
+        imageListView.setAdapter(mAdapter);
 
-        // Create SwipeMenu so we can delete items of {@link books}
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
-
-            @Override
-            public void create(SwipeMenu menu) {
-                // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(getApplicationContext());
-                // set item width
-                deleteItem.setWidth(170);
-                // set a icon
-                deleteItem.setIcon(R.drawable.ic_delete);
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-
-        bookListView.setMenuCreator(creator);
 
         // Get a reference to the {@link mSearchButton} to implement button click via keyboard
         mSearchButton = findViewById(R.id.buttonSearch);
@@ -156,39 +165,13 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
 
-        // Set the an {@link setOnMenuItemClickListener} on the {@link bookListView}
-        // Delete {@link books} item when user click on MenuItem
-        bookListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                mAdapter.remove(mAdapter.getItem(position));
-                // false : close the menu; true : not close the menu
-                return false;
-            }
-        });
-
-        // Set the an {@link setOnClickListener} on the {@link bookListView}
-        // Open full information about specific book
-        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-                Book currentBook = mAdapter.getItem(position);
-
-                Intent intent = new Intent(BookActivity.this, AboutBookActivity.class);
-                intent.putExtra("book_full", currentBook);
-
-                startActivity(intent);
-
-            }
-        });
 
 
         /*
          * Initialize the loader
          */
         if (mQueryText != null) {
-            getLoaderManager().initLoader(BOOK_LOADER_ID, null, this);
+            getLoaderManager().initLoader(IMAGE_LOADER_ID, null, this);
         }
 
     }
@@ -198,7 +181,10 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onClickSearch(String searchText) {
         mSearchText.clearFocus();
-        mAdapter.clear();
+
+        images.clear();
+        mImageDrawableSet.clear();
+
         mEmptyTextView.setVisibility(View.GONE);
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
@@ -211,10 +197,10 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
             // If there is a network connection -> get data
             if (networkInfo != null && networkInfo.isConnected()) {
                 if (!searchText.isEmpty() && searchText.length() >= 3 && searchText != null) {
-                    String bookName = URLEncoder.encode(searchText.trim().replaceAll(" ", "%20"), "UTF-8");
+                    String imageName = URLEncoder.encode(searchText, "UTF-8");
 
-                    // Set the URL with the suitable bookName
-                    mQueryText = "https://api.itbook.store/1.0/search/" + bookName;
+                    // Set the URL with the suitable imageName
+                    mQueryText = "https://pixabay.com/api/" + "?key=" + "19193969-87191e5db266905fe8936d565" + "&q=" + imageName + "&page=" + mPageNum;
 
                     // Show the loading indicator.
                     mLoadingIndicator.setVisibility(View.VISIBLE);
@@ -230,11 +216,11 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
 
                     // Get the loader initialized. Go through the above specified int ID constant
                     // and pass the bundle to null.
-                    Loader<String> BooksSearchLoader = mLoaderManager.getLoader(BOOK_LOADER_ID);
-                    if (BooksSearchLoader == null) {
-                        mLoaderManager.initLoader(BOOK_LOADER_ID, queryBundle, BookActivity.this);
+                    Loader<String> ImagesSearchLoader = mLoaderManager.getLoader(IMAGE_LOADER_ID);
+                    if (ImagesSearchLoader == null) {
+                        mLoaderManager.initLoader(IMAGE_LOADER_ID, queryBundle, PictureActivity.this);
                     } else {
-                        mLoaderManager.restartLoader(BOOK_LOADER_ID, queryBundle, BookActivity.this);
+                        mLoaderManager.restartLoader(IMAGE_LOADER_ID, queryBundle, PictureActivity.this);
                     }
                 } else {
                     Toast.makeText(this, "You need to introduce some text to search (>=3 symbols)", Toast.LENGTH_LONG).show();
@@ -245,7 +231,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                 mLoadingIndicator.setVisibility(View.INVISIBLE);
 
                 // Update empty state with no connection error message
-                Toast.makeText(BookActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PictureActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                 mEmptyTextView.setText("No Internet Connection");
             }
 
@@ -268,7 +254,7 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                 public boolean onTouch(View v, MotionEvent event) {
                     // Hide keypad
                     v.performClick();
-                    hideSoftKeyboard(BookActivity.this);
+                    hideSoftKeyboard(PictureActivity.this);
                     return false;
                 }
             });
@@ -306,34 +292,70 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public Loader<List<Book>> onCreateLoader(int i, Bundle args) {
-        return new BookLoader(this, args);
+    public Loader<List<Picture>> onCreateLoader(int i, Bundle args) {
+        return new PictureLoader(this, args);
     }
 
     @Override
-    public void onLoadFinished(Loader<List<Book>> loader, List<Book> data) {
-        // Set empty text to display "No books found."
-        mEmptyTextView.setText("No books found");
-        mEmptyTextView.setVisibility(View.VISIBLE);
-
+    public void onLoadFinished(Loader<List<Picture>> loader, List<Picture> data) {
         // Hide the indicator after the data is appeared
         mLoadingIndicator.setVisibility(View.GONE);
 
-        // Clear the adapter pf previous book data
-        mAdapter.clear();
+        // Clear the adapter pf previous image data
+        images.clear();
+        mImageDrawableSet.clear();
 
-        // If there is a valid list of {@link Book}s, then add them to the adapter's
+        // If there is a valid list of {@link Picture}s, then add them to the adapter's
         // data set. This will trigger the ListView to update
         if (data != null && !data.isEmpty()) {
-            mAdapter.addAll(data);
+            images.addAll(data);
+
+            HttpRequestImgHelper requestImgHelper = new HttpRequestImgHelper(PictureJSONParser.mPreviewImageUrls, this);
+            requestImgHelper.setOnTaskExecFinishedEvent(new HttpRequestImgHelper.OnTaskExecFinished() {
+                @Override
+                public void OnTaskExecFinishedEvent(List<Drawable> result) {
+
+                    mImageDrawableSet = result;
+
+                    mAdapter = new PictureAdapter(PictureActivity.this, images, mImageDrawableSet);
+                    imageListView.setAdapter(mAdapter);
+
+                    mEmptyTextView.setVisibility(View.GONE);
+                    imageListView.setVisibility(View.VISIBLE);
+
+                    mGridLayoutManager = new SpannedGridLayoutManager(
+                            new SpannedGridLayoutManager.GridSpanLookup() {
+                                @Override
+                                public SpannedGridLayoutManager.SpanInfo getSpanInfo(int position) {
+                                    // Conditions for 3x3 items
+                                    if (position % 8 == 1) {
+                                        return new SpannedGridLayoutManager.SpanInfo(3, 3);
+                                    } else {
+                                        return new SpannedGridLayoutManager.SpanInfo(1, 1);
+                                    }
+                                }
+                            },
+                            4, // number of columns
+                            1f // how big is default item
+                    );
+                    imageListView.setLayoutManager(mGridLayoutManager);
+                    mAdapter.notifyDataSetChanged();
+                }
+            });
+            requestImgHelper.execute();
         }
+
+        // Set empty text to display "No images found."
+        mEmptyTextView.setText("No images found");
+        mEmptyTextView.setVisibility(View.VISIBLE);
 
     }
 
     @Override
-    public void onLoaderReset(Loader<List<Book>> loader) {
+    public void onLoaderReset(Loader<List<Picture>> loader) {
         // Clear existing data on adapter as loader is reset
-        mAdapter.clear();
+        images.clear();
+        mImageDrawableSet.clear();
     }
 
     /** Save the data about url */
@@ -342,5 +364,4 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onSaveInstanceState(outState);
         outState.putString(REQUEST_URL, mQueryText);
     }
-
 }
