@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
@@ -26,12 +28,10 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureViewHolder> {
 
     private Context mContext;
     private List<Picture> mImageList;
-    private List<Drawable> mImages;
 
-    PictureAdapter(Context context, List<Picture> imageList, List<Drawable> images) {
+    PictureAdapter(Context context, List<Picture> imageList) {
         mContext = context;
         mImageList = imageList;
-        mImages = images;
     }
 
 
@@ -43,15 +43,9 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureViewHolder> {
 
     @Override
     public void onBindViewHolder(PictureViewHolder holder, final int position) {
-        holder.mImageView.setImageDrawable(mImages.get(position));
-//        if (position % 8 == 1) {
-//            holder.mImageView.getLayoutParams().height = (int) mContext.getResources().getDimension(R.dimen.imageview_height);
-//            holder.mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//            holder.mImageView.requestLayout();
-//
-//        }
-//        Picture currentImage = getItem(position);
-//        new DownloadImage(holder.mImageView).execute(currentImage.getImageUrl());
+        Picture currentImage = mImageList.get(position);
+
+        Picasso.get().load(currentImage.getImageUrl()).resize(300, 300).centerCrop().into(holder.mImageView);
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +59,7 @@ public class PictureAdapter extends RecyclerView.Adapter<PictureViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mImages.size();
+        return mImageList.size();
     }
 
 

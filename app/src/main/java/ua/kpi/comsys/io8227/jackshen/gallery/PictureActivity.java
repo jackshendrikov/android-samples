@@ -4,7 +4,6 @@ import android.app.LoaderManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Loader;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -51,7 +50,6 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
 
     /** Handler for the list of images */
     List<Picture> images = new ArrayList<>();
-    List<Drawable> mImageDrawableSet = new ArrayList<>();
 
     /** InputText for the image search */
     private TextInputEditText mSearchText;
@@ -71,7 +69,9 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
 
     private SpannedGridLayoutManager mGridLayoutManager;
 
-    private int mPageNum = 24;
+    private int PAGE_NUM = 24;
+
+    private String API_KEY = "19193969-87191e5db266905fe8936d565";
 
     RecyclerView imageListView;
 
@@ -128,7 +128,7 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
         }
 
         // Create a new adapter that takes an empty list of images as input
-        mAdapter = new PictureAdapter(this, images, mImageDrawableSet);
+        mAdapter = new PictureAdapter(this, images);
 
         // Set the adapter on the {@link imageListView} so the list can be populated in UI
         imageListView.setAdapter(mAdapter);
@@ -185,7 +185,7 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
         mSearchText.clearFocus();
 
         images.clear();
-        mImageDrawableSet.clear();
+//        mImageDrawableSet.clear();
 
         mEmptyTextView.setVisibility(View.GONE);
 
@@ -198,11 +198,11 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
         try {
             // If there is a network connection -> get data
             if (networkInfo != null && networkInfo.isConnected()) {
-                if (!searchText.isEmpty() && searchText.length() >= 3 && searchText != null) {
+                if (!searchText.isEmpty() && searchText.length() >= 3) {
                     String imageName = URLEncoder.encode(searchText, "UTF-8");
 
                     // Set the URL with the suitable imageName
-                    mQueryText = "https://pixabay.com/api/" + "?key=" + "19193969-87191e5db266905fe8936d565" + "&q=" + imageName + "&per_page=" + mPageNum;
+                    mQueryText = "https://pixabay.com/api/" + "?key=" + API_KEY + "&q=" + imageName + "&per_page=" + PAGE_NUM;
 
                     // Show the loading indicator.
                     mLoadingIndicator.setVisibility(View.VISIBLE);
@@ -305,50 +305,40 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
 
         // Clear the adapter pf previous image data
         images.clear();
-        mImageDrawableSet.clear();
 
         // If there is a valid list of {@link Picture}s, then add them to the adapter's
         // data set. This will trigger the ListView to update
         if (data != null && !data.isEmpty()) {
             images.addAll(data);
-            HttpRequestImgHelper requestImgHelper = new HttpRequestImgHelper(PictureJSONParser.mPreviewImageUrls, this);
-            requestImgHelper.setOnTaskExecFinishedEvent(new HttpRequestImgHelper.OnTaskExecFinished() {
-                @Override
-                public void OnTaskExecFinishedEvent(List<Drawable> result) {
 
-                    mImageDrawableSet = result;
+            mAdapter = new PictureAdapter(PictureActivity.this, images);
+            imageListView.setAdapter(mAdapter);
 
-                    mAdapter = new PictureAdapter(PictureActivity.this, images, mImageDrawableSet);
-                    imageListView.setAdapter(mAdapter);
+            mEmptyTextView.setVisibility(View.GONE);
+            imageListView.setVisibility(View.VISIBLE);
 
-                    mEmptyTextView.setVisibility(View.GONE);
-                    imageListView.setVisibility(View.VISIBLE);
-
-                    mGridLayoutManager = new SpannedGridLayoutManager(
-                            new SpannedGridLayoutManager.GridSpanLookup() {
-                                @Override
-                                public SpannedGridLayoutManager.SpanInfo getSpanInfo(int position) {
-                                    // Conditions for 3x3 items
-                                    if (position % 8 == 1) {
-                                        return new SpannedGridLayoutManager.SpanInfo(3, 3);
-                                    } else {
-                                        return new SpannedGridLayoutManager.SpanInfo(1, 1);
-                                    }
-                                }
-                            },
-                            4, // number of columns
-                            1f // how big is default item
-                    );
-                    imageListView.setLayoutManager(mGridLayoutManager);
-                    mAdapter.notifyDataSetChanged();
-                }
-            });
-            requestImgHelper.execute();
+            mGridLayoutManager = new SpannedGridLayoutManager(
+                    new SpannedGridLayoutManager.GridSpanLookup() {
+                        @Override
+                        public SpannedGridLayoutManager.SpanInfo getSpanInfo(int position) {
+                            // Conditions for 3x3 items
+                            if (position % 8 == 1) {
+                                return new SpannedGridLayoutManager.SpanInfo(3, 3);
+                            } else {
+                                return new SpannedGridLayoutManager.SpanInfo(1, 1);
+                            }
+                        }
+                    },
+                    4, // number of columns
+                    1f // how big is default item
+            );
+            imageListView.setLayoutManager(mGridLayoutManager);
+            mAdapter.notifyDataSetChanged();
+        } else {
+            // Set empty text to display "No images found."
+            mEmptyTextView.setText("No images found");
+            mEmptyTextView.setVisibility(View.VISIBLE);
         }
-
-        // Set empty text to display "No images found."
-        mEmptyTextView.setText("No images found");
-        mEmptyTextView.setVisibility(View.VISIBLE);
 
     }
 
@@ -356,7 +346,6 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
     public void onLoaderReset(Loader<List<Picture>> loader) {
         // Clear existing data on adapter as loader is reset
         images.clear();
-        mImageDrawableSet.clear();
     }
 
     /** Save the data about url */

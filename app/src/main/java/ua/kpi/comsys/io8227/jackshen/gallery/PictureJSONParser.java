@@ -26,8 +26,6 @@ final class PictureJSONParser {
     /** Tag for the log messages */
     private static final String LOG_MSG = PictureJSONParser.class.getSimpleName();
 
-    static List<String> mPreviewImageUrls = new ArrayList<>();
-
     /**
      * We are creating a private constructor because no one else should create
      * the {@link PictureJSONParser} object.
@@ -43,7 +41,6 @@ final class PictureJSONParser {
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     static List<Picture> getPictureData(String requestUrl) {
-        mPreviewImageUrls.clear();
 
         // Create URL object
         URL url = makeUrl(requestUrl);
@@ -204,9 +201,6 @@ final class PictureJSONParser {
 
                 // Get user image
                 String userImageURL = currentImage.getString("userImageURL");
-
-
-                mPreviewImageUrls.add(imageUrl);
 
                 // Create a new {@link Picture} object with the title, subtitle, isbn13, price
                 // and imageUrl from the JSON response.
