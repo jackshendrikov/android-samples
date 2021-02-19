@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".InterpolateGraphActivity"
+        <activity android:name=".drawing.InterpolateGraphActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:configChanges="orientation|screenSize">
@@ -47,7 +47,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".InfographicActivity"
+        <activity android:name=".drawing.InfographicActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan"
             android:configChanges="orientation|screenSize">
@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".BookActivity"
+        <activity android:name=".books.BookActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".BookAddActivity"
+        <activity android:name=".books.BookAddActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -79,7 +79,7 @@
         </activity>
 
 
-        <activity android:name=".BookAboutActivity"
+        <activity android:name=".books.BookAboutActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -89,7 +89,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PictureActivity"
+        <activity android:name=".gallery.PictureActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>
@@ -99,7 +99,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PictureAboutActivity"
+        <activity android:name=".gallery.PictureAboutActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:configChanges="orientation|screenSize">
             <intent-filter>

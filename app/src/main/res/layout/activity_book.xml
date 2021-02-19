@@ -5,7 +5,7 @@
     android:id="@+id/main_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BookActivity">
+    tools:context=".books.BookActivity">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -75,6 +75,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/separator">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:text="+"
+            android:textSize="40sp"
+            android:background="@drawable/ripple"
+            android:id="@+id/buttonAdd"
+            android:layout_margin="16dp"
+            android:elevation="3dp"
+            android:paddingBottom="16dp"
+            app:fontFamily="@font/gotham"
+            android:onClick="onClickAdd"
+            android:layout_gravity="right|bottom"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
 
         <com.baoyz.swipemenulistview.SwipeMenuListView
             android:id="@+id/list"

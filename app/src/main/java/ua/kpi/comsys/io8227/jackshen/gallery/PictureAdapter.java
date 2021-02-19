@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.gallery;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
+
+import ua.kpi.comsys.io8227.jackshen.R;
 
 public class PictureAdapter extends RecyclerView.Adapter<PictureViewHolder> {
 

@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.books;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -6,6 +6,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import ua.kpi.comsys.io8227.jackshen.R;
 
 
 public class BookAboutActivity extends AppCompatActivity {

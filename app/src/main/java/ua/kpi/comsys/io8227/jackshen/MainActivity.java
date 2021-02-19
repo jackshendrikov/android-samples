@@ -11,7 +11,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import ua.kpi.comsys.io8227.jackshen.books.BookActivity;
+import ua.kpi.comsys.io8227.jackshen.drawing.InfographicActivity;
+import ua.kpi.comsys.io8227.jackshen.gallery.PictureActivity;
 
 public class MainActivity extends AppCompatActivity {
 

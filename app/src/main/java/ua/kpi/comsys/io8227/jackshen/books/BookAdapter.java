@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.books;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -22,6 +22,8 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
+
+import ua.kpi.comsys.io8227.jackshen.R;
 
 
 /**

@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.drawing;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -28,6 +28,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import ua.kpi.comsys.io8227.jackshen.R;
 
 public class InterpolateGraphActivity extends AppCompatActivity {
     double a, b;

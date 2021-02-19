@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.gallery;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ua.kpi.comsys.io8227.jackshen.R;
 
 /**
  * A {@link RecyclerView.LayoutManager} which displays a regular grid (i.e. all cells are the same

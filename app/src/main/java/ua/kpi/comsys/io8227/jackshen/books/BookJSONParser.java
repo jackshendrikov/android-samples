@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.books;
 
 import android.os.Build;
 import android.text.TextUtils;

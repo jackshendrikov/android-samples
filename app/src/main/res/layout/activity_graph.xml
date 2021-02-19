@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InterpolateGraphActivity">
+    tools:context=".drawing.InterpolateGraphActivity">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -48,12 +48,12 @@
 
         android:gravity="center"
         android:text="Error:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="normal"
 
-        android:shadowColor="#57000000"
+        android:shadowColor="@color/text_shadow_white"
         android:shadowDx="4"
         android:shadowDy="4"
         android:shadowRadius="2"
@@ -79,12 +79,12 @@
 
         android:gravity="center"
         android:text="Graphs of interpolated and given functions:"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="normal"
 
-        android:shadowColor="#57000000"
+        android:shadowColor="@color/text_shadow_white"
         android:shadowDx="4"
         android:shadowDy="4"
         android:shadowRadius="2"

@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.gallery;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,7 +19,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /** Helper methods to request and retrieve image data from a specified JSON */
 final class PictureJSONParser {

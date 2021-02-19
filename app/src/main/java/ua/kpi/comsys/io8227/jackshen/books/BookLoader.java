@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.books;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
@@ -11,23 +11,23 @@ import androidx.annotation.RequiresApi;
 import java.util.List;
 
 
-/** Using AsyncTask to load a list of images by network request to a certain URL. */
-public class PictureLoader extends AsyncTaskLoader<List<Picture>> {
+/** Using AsyncTask to load a list of books by network request to a certain URL. */
+public class BookLoader extends AsyncTaskLoader<List<Book>> {
 
     /** Query URL **/
     private Bundle mArgs;
 
-    /** Cache the old images */
-    private List<Picture> cachedImages;
+    /** Cache the old books */
+    private List<Book> cachedBooks;
 
 
     /**
-     * Constructs a new {@link PictureLoader}.
+     * Constructs a new {@link BookLoader}.
      *
      * @param context of the activity
      * @param url to load data from
      */
-    PictureLoader(Context context, Bundle url) {
+    BookLoader(Context context, Bundle url) {
         super(context);
         mArgs = url;
     }
@@ -41,9 +41,9 @@ public class PictureLoader extends AsyncTaskLoader<List<Picture>> {
             return;
         }
 
-        // If images is not null, deliver that result. Otherwise, force a load
-        if (cachedImages != null) {
-            deliverResult(cachedImages);
+        // If books is not null, deliver that result. Otherwise, force a load
+        if (cachedBooks != null) {
+            deliverResult(cachedBooks);
         } else {
             forceLoad();
         }
@@ -55,23 +55,23 @@ public class PictureLoader extends AsyncTaskLoader<List<Picture>> {
      */
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    public List<Picture> loadInBackground() {
+    public List<Book> loadInBackground() {
         //  Extract the search query from the args using our constant
-        String searchUrl = mArgs.getString(PictureActivity.REQUEST_URL);
+        String searchUrl = mArgs.getString(BookActivity.REQUEST_URL);
 
         // Check for valid string url
         if (searchUrl == null || TextUtils.isEmpty(searchUrl)) {
             return null;
         }
 
-        // Perform the network request, parse the response, and extract a list of images.
-        return PictureJSONParser.getPictureData(searchUrl);
+        // Perform the network request, parse the response, and extract a list of books.
+        return BookJSONParser.getBookData(searchUrl);
     }
 
     /** Override deliverResult and store the data in returnedUrl */
     @Override
-    public void deliverResult(List<Picture> data) {
-        cachedImages = data;
+    public void deliverResult(List<Book> data) {
+        cachedBooks = data;
         super.deliverResult(data);
     }
 }

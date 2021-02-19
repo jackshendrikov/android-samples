@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    tools:context=".InfographicActivity" >
+    tools:context=".drawing.InfographicActivity" >
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -35,11 +35,11 @@
             android:layout_height="wrap_content"
 
             android:text="Line Chart (Interpolation)"
-            android:textColor="#000000"
+            android:textColor="@color/colorPrimary"
             android:textSize="26sp"
             android:textAlignment="center"
             android:typeface="monospace"
-            android:shadowColor="#57000000"
+            android:shadowColor="@color/text_shadow_white"
             android:shadowDx="4"
             android:shadowDy="4"
             android:shadowRadius="2"
@@ -68,14 +68,10 @@
                 android:layout_marginLeft="30dp"
 
                 android:text="Interpolation:"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:typeface="normal"
-                android:shadowColor="#57000000"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="2"
 
                 app:fontFamily="@font/roboto" />
 
@@ -95,7 +91,7 @@
 
                 android:text="Newton polynomial"
                 android:textSize="20sp"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/colorPrimary"
                 android:typeface="normal"
                 app:fontFamily="@font/roboto" />
         </LinearLayout>
@@ -123,15 +119,10 @@
                 android:layout_marginLeft="30dp"
 
                 android:text="Function:"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:typeface="normal"
-
-                android:shadowColor="#57000000"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="2"
 
                 app:fontFamily="@font/roboto" />
         </LinearLayout>
@@ -150,7 +141,7 @@
 
                 android:text="cos (x)"
                 android:textSize="20sp"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/colorPrimary"
                 android:typeface="normal"
                 app:fontFamily="@font/roboto" />
         </LinearLayout>
@@ -181,13 +172,8 @@
                 android:text="Boundaries of х:"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/colorPrimary"
                 android:typeface="normal"
-
-                android:shadowColor="#57000000"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="2"
 
                 app:fontFamily="@font/roboto" />
         </LinearLayout>
@@ -204,14 +190,14 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center_horizontal"
 
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/white"
                 android:ems="2"
                 android:fontFamily="@font/roboto"
                 android:hint="а"
                 android:importantForAutofill="no"
                 android:inputType="numberSigned"
-                android:textColor="@color/dark_black"
-                android:textColorHint="@color/black"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/white"
                 android:textSize="20sp"
                 android:typeface="normal"
                 tools:targetApi="lollipop" />
@@ -230,7 +216,7 @@
                 android:gravity="bottom|center_horizontal"
 
                 android:text=";"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 android:typeface="normal"
                 app:fontFamily="@font/roboto"
@@ -250,15 +236,15 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="center_horizontal"
 
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/white"
                 android:importantForAutofill="no"
                 android:ems="2"
                 android:hint="b"
                 android:inputType="numberSigned"
                 android:fontFamily="@font/roboto"
                 android:textSize="20sp"
-                android:textColor="@color/dark_black"
-                android:textColorHint="@color/black"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/white"
                 android:typeface="normal"
                 tools:targetApi="lollipop" />
         </LinearLayout>
@@ -288,13 +274,8 @@
                 android:text="Amount of х:"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/dark_black"
+                android:textColor="@color/colorPrimary"
                 android:typeface="normal"
-
-                android:shadowColor="#57000000"
-                android:shadowDx="4"
-                android:shadowDy="4"
-                android:shadowRadius="2"
 
                 app:fontFamily="@font/roboto" />
         </LinearLayout>
@@ -312,15 +293,15 @@
                 android:layout_marginLeft="16dp"
                 android:gravity="center_horizontal"
 
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/white"
                 android:importantForAutofill="no"
                 android:ems="2"
                 android:hint="n"
                 android:inputType="numberSigned"
                 android:fontFamily="@font/roboto"
                 android:textSize="20sp"
-                android:textColor="@color/dark_black"
-                android:textColorHint="@color/black"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/white"
                 android:typeface="normal"
                 tools:targetApi="lollipop"  />
         </LinearLayout>

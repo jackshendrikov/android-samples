@@ -6,7 +6,7 @@
 
     <color name="textInputLayout">#96ffffff</color>
     <color name="text_shadow">#7F000000</color>
-    <color name="text_shadow_white">#FFFFFF</color>
+    <color name="text_shadow_white">#57ffffff</color>
 
     <color name="black">#262626</color>
     <color name="dark_black">#181818</color>

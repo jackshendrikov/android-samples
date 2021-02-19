@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.drawing;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -25,6 +25,8 @@ import com.jackandphantom.customtogglebutton.CustomToggle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import ua.kpi.comsys.io8227.jackshen.R;
 
 public class InfographicActivity extends AppCompatActivity {
     String clickedButton;

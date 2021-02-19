@@ -1,4 +1,4 @@
-package ua.kpi.comsys.io8227.jackshen;
+package ua.kpi.comsys.io8227.jackshen.books;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static ua.kpi.comsys.io8227.jackshen.BookActivity.hideSoftKeyboard;
+import ua.kpi.comsys.io8227.jackshen.R;
+
+import static ua.kpi.comsys.io8227.jackshen.books.BookActivity.hideSoftKeyboard;
 
 public class BookAddActivity extends AppCompatActivity {
 
