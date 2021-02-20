@@ -128,7 +128,6 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:textSize="20dp"
-                android:maxLines="2"
                 android:textColor="@color/colorPrimary"
                 app:fontFamily="@font/gotham"
                 tools:text="Publisher"/>
@@ -161,7 +160,6 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:textSize="20dp"
-                android:maxLines="2"
                 android:textColor="@color/colorPrimary"
                 app:fontFamily="@font/gotham"
                 tools:text="ISBN"/>
@@ -194,7 +192,6 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:textSize="20dp"
-                android:maxLines="2"
                 android:textColor="@color/colorPrimary"
                 app:fontFamily="@font/gotham"
                 tools:text="Pages"/>
@@ -227,7 +224,6 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:textSize="20dp"
-                android:maxLines="2"
                 android:textColor="@color/colorPrimary"
                 app:fontFamily="@font/gotham"
                 tools:text="Year"/>
@@ -237,15 +233,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/description_full_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="14dp"
                 android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 android:textSize="20dp"
                 android:textColor="@color/textInputLayout"
                 app:fontFamily="@font/gotham"
@@ -257,10 +253,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="14dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginStart="18dp"
                 android:textSize="20dp"
-                android:maxLines="2"
                 android:textColor="@color/colorPrimary"
                 app:fontFamily="@font/gotham"
                 tools:text="Description"/>

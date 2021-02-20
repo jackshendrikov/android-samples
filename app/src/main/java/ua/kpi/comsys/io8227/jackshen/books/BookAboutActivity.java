@@ -1,16 +1,23 @@
 package ua.kpi.comsys.io8227.jackshen.books;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 import ua.kpi.comsys.io8227.jackshen.R;
 
 
 public class BookAboutActivity extends AppCompatActivity {
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +28,12 @@ public class BookAboutActivity extends AppCompatActivity {
 
         ImageView cover = findViewById(R.id.image_full);
         assert fullBook != null;
-        if (fullBook.getImageUrl().equals("")) {
+        if (fullBook.getImageUrl() == null || fullBook.getImageUrl().equals("")) {
             cover.setImageResource(R.drawable.noimage);
         } else {
-            new BookAdapter.DownloadImage(cover).execute(fullBook.getImageUrl());
+            if (BookActivity.isNetworkConnected(this))
+                Picasso.get().load(fullBook.getImageUrl()).into(cover);
+            else Picasso.get().load(new File(fullBook.getImageUrl())).into(cover);
         }
 
         TextView title = findViewById(R.id.title_full);

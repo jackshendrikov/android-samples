@@ -185,19 +185,12 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
         mSearchText.clearFocus();
 
         images.clear();
-//        mImageDrawableSet.clear();
 
         mEmptyTextView.setVisibility(View.GONE);
 
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = Objects.requireNonNull(connMgr).getActiveNetworkInfo();
-
         try {
             // If there is a network connection -> get data
-            if (networkInfo != null && networkInfo.isConnected()) {
+            if (isNetworkConnected(this)) {
                 if (!searchText.isEmpty() && searchText.length() >= 3) {
                     String imageName = URLEncoder.encode(searchText, "UTF-8");
 
@@ -233,8 +226,56 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
                 mLoadingIndicator.setVisibility(View.INVISIBLE);
 
                 // Update empty state with no connection error message
-                Toast.makeText(PictureActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-                mEmptyTextView.setText("No Internet Connection");
+                mEmptyTextView.setText("No Internet Connection! Trying to retrieve data from DB..");
+                Toast.makeText(this, "No Internet Connection! Trying to retrieve data from DB", Toast.LENGTH_SHORT).show();
+
+                if (!searchText.isEmpty() && searchText.length() >= 3) {
+                    mLoadingIndicator.setVisibility(View.VISIBLE);
+
+                    List<Picture> imagesDB = PictureProvider.getData(searchText);
+
+                    images.clear();
+
+                    if (imagesDB != null && !imagesDB.isEmpty()) {
+                        images.addAll(imagesDB);
+
+                        mAdapter = new PictureAdapter(PictureActivity.this, images);
+                        imageListView.setAdapter(mAdapter);
+
+                        mEmptyTextView.setVisibility(View.GONE);
+                        imageListView.setVisibility(View.VISIBLE);
+
+                        mGridLayoutManager = new SpannedGridLayoutManager(
+                                new SpannedGridLayoutManager.GridSpanLookup() {
+                                    @Override
+                                    public SpannedGridLayoutManager.SpanInfo getSpanInfo(int position) {
+                                        // Conditions for 3x3 items
+                                        if (position % 8 == 1) {
+                                            return new SpannedGridLayoutManager.SpanInfo(3, 3);
+                                        } else {
+                                            return new SpannedGridLayoutManager.SpanInfo(1, 1);
+                                        }
+                                    }
+                                },
+                                4, // number of columns
+                                1f // how big is default item
+                        );
+                        imageListView.setLayoutManager(mGridLayoutManager);
+                        mAdapter.notifyDataSetChanged();
+                    } else {
+                        // Set empty text to display "No books found."
+                        mEmptyTextView.setText("No images found...");
+                        mEmptyTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(this, "No images found at all", Toast.LENGTH_SHORT).show();
+                    }
+
+                    // Hide the indicator after the data is appeared
+                    mLoadingIndicator.setVisibility(View.GONE);
+
+                } else {
+                    Toast.makeText(this, "You need to introduce some text to search (>=3 symbols)", Toast.LENGTH_LONG).show();
+                }
+
             }
 
         } catch (UnsupportedEncodingException e) {
@@ -353,5 +394,18 @@ public class PictureActivity extends AppCompatActivity implements LoaderManager.
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(REQUEST_URL, mQueryText);
+    }
+
+    /** Check network connection */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static boolean isNetworkConnected(Context context) {
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = Objects.requireNonNull(connMgr).getActiveNetworkInfo();
+
+        // If there is a network connection -> return true
+        return (networkInfo != null && networkInfo.isConnected());
     }
 }

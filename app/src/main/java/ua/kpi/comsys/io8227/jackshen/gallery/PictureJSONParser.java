@@ -175,8 +175,14 @@ final class PictureJSONParser {
                 // Get the current image
                 JSONObject currentImage = imageArray.getJSONObject(i);
 
-                // Get the URL of image's
+                // Get ID of the image
+                String imageID = currentImage.getString("id");
+
+                // Get the URL of the image
                 String imageUrl = currentImage.getString("webformatURL");
+
+                // Get tags of the image
+                String imageTags = currentImage.getString("tags");
 
                 // Get width of the image
                 String imageWidth = currentImage.getString("imageWidth");
@@ -204,7 +210,7 @@ final class PictureJSONParser {
 
                 // Create a new {@link Picture} object with the title, subtitle, isbn13, price
                 // and imageUrl from the JSON response.
-                Picture image = new Picture(imageUrl, imageWidth, imageHeight, views, downloads,
+                Picture image = new Picture(imageID, imageUrl, imageTags, imageWidth, imageHeight, views, downloads,
                         favorites, likes, user, userImageURL);
 
                 // Add the new {@link Picture} to the list of images.

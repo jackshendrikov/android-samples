@@ -108,6 +108,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".books.BookProvider"
+            android:authorities="ua.kpi.comsys.io8227.jackshen.books"
+            android:exported="false" />
+
+        <provider
+            android:name=".gallery.PictureProvider"
+            android:authorities="ua.kpi.comsys.io8227.jackshen.gallery"
+            android:exported="false" />
     </application>
 
 </manifest>

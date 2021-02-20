@@ -3,8 +3,15 @@ package ua.kpi.comsys.io8227.jackshen.gallery;
 import java.io.Serializable;
 
 public class Picture implements Serializable {
+
+    /** ID of the image */
+    private String mImageID;
+
     /** URL of the image */
     private String mImageUrl;
+
+    /** Tags of the image */
+    private String mImageTags;
 
     /** Width of the image */
     private String mImageWidth;
@@ -34,7 +41,9 @@ public class Picture implements Serializable {
     /**
      * Create picture object
      *
+     * @param imageID        - ID of the image
      * @param imageUrl       - the URL of the image
+     * @param imageTags      - tags of the image
      * @param imageWidth     - width of the image
      * @param imageHeight    - height of the image
      * @param imageViews     - number of image views
@@ -44,10 +53,12 @@ public class Picture implements Serializable {
      * @param userName       - user name
      * @param userImage      - user image
      */
-    Picture(String imageUrl, String imageWidth, String imageHeight, String imageViews,
+    Picture(String imageID, String imageUrl, String imageTags, String imageWidth, String imageHeight, String imageViews,
             String imageDownloads, String imageFavorites, String imageLikes, String userName,
             String userImage) {
+        this.mImageID = imageID;
         this.mImageUrl = imageUrl;
+        this.mImageTags = imageTags;
         this.mImageWidth = imageWidth;
         this.mImageHeight = imageHeight;
         this.mImageViews = imageViews;
@@ -59,8 +70,14 @@ public class Picture implements Serializable {
 
     }
 
+    /** Return ID of the image */
+    String getImageID() { return mImageID; }
+
     /** Return the URL of the image */
     String getImageUrl() { return mImageUrl; }
+
+    /** Return tags of the image */
+    String getImageTags() { return mImageTags; }
 
     /** Return width of the image */
     String getImageWidth() { return mImageWidth; }

@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,6 +34,7 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -74,6 +76,8 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private String mQueryText;
 
+    private static Context mContext;
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,8 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Inflate the activity's UI
         setContentView(R.layout.activity_book);
+
+        mContext = getApplicationContext();
 
         // Setup UI to hide soft keyboard when clicked outside the {@link EditText}
         setupUI(findViewById(R.id.main_parent));
@@ -166,6 +172,22 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         bookListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                String bookISBN = mAdapter.getItem(position).getISBN();
+
+                // remove image
+                String imagePath = BookProvider.getDBImageURL(bookISBN);
+                if (!imagePath.equals(""))
+                    if (new File(imagePath).delete())
+                        Log.i("Delete image", "image successfully deleted from storage!");
+
+                // delete from DB
+                getContentResolver().delete(
+                        BookContract.BookEntry.CONTENT_URI,
+                        "book_isbn = ?",
+                        new String[]{bookISBN}
+                        );
+
+                // delete from View
                 mAdapter.remove(mAdapter.getItem(position));
                 // false : close the menu; true : not close the menu
                 return false;
@@ -184,7 +206,6 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                 intent.putExtra("book_full", currentBook);
 
                 startActivity(intent);
-
             }
         });
 
@@ -209,7 +230,6 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         };
         mAddButton.setOutlineProvider(viewOutlineProvider);
         mAddButton.setClipToOutline(true);
-
     }
 
 
@@ -220,16 +240,10 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         mAdapter.clear();
         mEmptyTextView.setVisibility(View.GONE);
 
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = Objects.requireNonNull(connMgr).getActiveNetworkInfo();
-
         try {
             // If there is a network connection -> get data
-            if (networkInfo != null && networkInfo.isConnected()) {
-                if (!searchText.isEmpty() && searchText.length() >= 3 && searchText != null) {
+            if (isNetworkConnected(this)) {
+                if (!searchText.isEmpty() && searchText.length() >= 3) {
                     String bookName = URLEncoder.encode(searchText.trim().replaceAll(" ", "%20"), "UTF-8");
 
                     // Set the URL with the suitable bookName
@@ -264,8 +278,30 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
                 mLoadingIndicator.setVisibility(View.INVISIBLE);
 
                 // Update empty state with no connection error message
-                Toast.makeText(BookActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-                mEmptyTextView.setText("No Internet Connection");
+                mEmptyTextView.setText("No Internet Connection! Trying to retrieve data from DB..");
+                Toast.makeText(this, "No Internet Connection! Trying to retrieve data from DB", Toast.LENGTH_SHORT).show();
+
+                if (!searchText.isEmpty() && searchText.length() >= 3) {
+                    mLoadingIndicator.setVisibility(View.VISIBLE);
+
+                    List<Book> booksDB = BookProvider.getData(searchText);
+
+                    mAdapter.clear();
+
+                    // Hide the indicator after the data is appeared
+                    mLoadingIndicator.setVisibility(View.GONE);
+
+                    if (booksDB != null && !booksDB.isEmpty()) {
+                        mAdapter.addAll(booksDB);
+                    } else {
+                        // Set empty text to display "No books found."
+                        mEmptyTextView.setText("No books found...");
+                        mEmptyTextView.setVisibility(View.VISIBLE);
+                        Toast.makeText(BookActivity.this, "No books found at all", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, "You need to introduce some text to search (>=3 symbols)", Toast.LENGTH_LONG).show();
+                }
             }
 
         } catch (UnsupportedEncodingException e) {
@@ -375,7 +411,6 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         if (data != null && !data.isEmpty()) {
             mAdapter.addAll(data);
         }
-
     }
 
     @Override
@@ -391,4 +426,21 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         outState.putString(REQUEST_URL, mQueryText);
     }
 
+    /** Get current app context */
+    public static Context getAppContext() {
+        return BookActivity.mContext;
+    }
+
+    /** Check network connection */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static boolean isNetworkConnected(Context context) {
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        NetworkInfo networkInfo = Objects.requireNonNull(connMgr).getActiveNetworkInfo();
+
+        // If there is a network connection -> return true
+        return (networkInfo != null && networkInfo.isConnected());
+    }
 }

@@ -48,6 +48,19 @@
                 android:layout_toRightOf="@+id/author_img" />
 
             <TextView
+                android:id="@+id/txt_view_views"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/txt_view_like"
+                android:layout_toLeftOf="@+id/txt_view_like"
+                android:drawableTop="@drawable/ic_visibility_32dp"
+                android:gravity="center_horizontal"
+                app:fontFamily="@font/roboto"/>
+
+            <TextView
                 android:id="@+id/txt_view_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +93,8 @@
             <TextView
                 android:id="@+id/txt_view_downloads"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/txt_view_size"

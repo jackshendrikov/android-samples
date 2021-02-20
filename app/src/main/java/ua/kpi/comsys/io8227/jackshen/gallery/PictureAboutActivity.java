@@ -20,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 import java.util.Objects;
 
 import ua.kpi.comsys.io8227.jackshen.R;
@@ -41,18 +44,20 @@ public class PictureAboutActivity extends AppCompatActivity {
         Button mDownloadButton = findViewById(R.id.action_download);
 
         ImageView picture = findViewById(R.id.thumbnail_view);
-
-        if (Objects.requireNonNull(fullPicture).getImageUrl().equals("")) {
+        assert fullPicture != null;
+        if (fullPicture.getImageUrl() == null || fullPicture.getImageUrl().equals("")) {
             picture.setImageResource(R.drawable.noimage);
         } else {
-            new PictureAdapter.DownloadImage(picture).execute(fullPicture.getImageUrl());
+            if (PictureActivity.isNetworkConnected(this))
+                Picasso.get().load(fullPicture.getImageUrl()).into(picture);
+            else Picasso.get().load(new File(fullPicture.getImageUrl())).into(picture);
         }
 
         ImageView authorImage = findViewById(R.id.author_img);
-        if (Objects.requireNonNull(fullPicture).getUserImage().equals("")) {
+        if (fullPicture.getUserImage() == null || fullPicture.getUserImage().equals("")) {
             authorImage.setImageResource(R.drawable.noimage);
         } else {
-            new PictureAdapter.DownloadImage(authorImage).execute(fullPicture.getUserImage());
+            Picasso.get().load(fullPicture.getUserImage()).into(authorImage);
         }
 
         TextView author = findViewById(R.id.txt_view_author);
@@ -63,6 +68,9 @@ public class PictureAboutActivity extends AppCompatActivity {
 
         TextView favorites = findViewById(R.id.txt_view_favorite);
         favorites.setText(fullPicture.getFavorites());
+
+        TextView views = findViewById(R.id.txt_view_views);
+        views.setText(fullPicture.getViews());
 
         TextView downloads = findViewById(R.id.txt_view_downloads);
         String imgDownloads = "Downloads: " + fullPicture.getDownloads();

@@ -179,10 +179,10 @@ final class BookJSONParser {
                 JSONObject currentBook = bookArray.getJSONObject(i);
 
                 // Get the book's ISBN number
-                String isbn13 = currentBook.getString("isbn13");
+                String isbn = currentBook.getString("isbn13");
 
-                if (!isbn13.equals("")) {
-                    URL url = makeUrl(REQUEST_URL_FULL + isbn13);
+                if (!isbn.equals("")) {
+                    URL url = makeUrl(REQUEST_URL_FULL + isbn);
 
                     // Perform HTTP request to the URL and receive a JSON response back
                     String jsonResponse = null;
@@ -201,6 +201,9 @@ final class BookJSONParser {
                     // Get the book's subtitle
                     String subtitle = currentFullBook.getString("subtitle");
 
+                    // Get the book's ISBN
+                    String isbn13 = currentFullBook.getString("isbn13");
+
                     // Extract authors only if they exist
                     String authors = "";
                     if (currentFullBook.has("authors")) {
@@ -208,12 +211,15 @@ final class BookJSONParser {
                         String[] authorsArray = currentFullBook.getString("authors").split(",");
 
                         for (int j = 0; j < authorsArray.length; j++) {
-                            if (j == 0)
+                            if (j == 0) {
                                 authors += authorsArray[j];
-                            else if (j <= 2)
+                            }
+                            else if (j <= 2) {
                                 authors += " | " + authorsArray[j];
-                            else
+                            }
+                            else {
                                 authors += " and others";
+                            }
                         }
                     } else {
                         authors = "Unknown authors";
@@ -248,7 +254,6 @@ final class BookJSONParser {
                     // Add the new {@link Book} to the list of books.
                     books.add(book);
 
-
                 } else {
                     // Get the book's title
                     String title = currentBook.getString("title");
@@ -265,7 +270,7 @@ final class BookJSONParser {
 
                     // Create a new {@link Book} object with the title, subtitle, isbn13, price
                     // and imageUrl from the JSON response.
-                    Book book = new Book(title, subtitle, "", "", isbn13, "", "",
+                    Book book = new Book(title, subtitle, "", "", isbn, "", "",
                             "0.0", "", price, imageUrl);
 
                     // Add the new {@link Book} to the list of books.
