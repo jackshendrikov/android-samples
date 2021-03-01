@@ -242,6 +242,6 @@ The user can also select the number of points and boundaries on the x-axis, if t
 </p>
 &nbsp;
 <p align="center">
-  <img src="img/example2_8.png" height="50%" alt="App Example 8"/>
-  <img src="img/example2_9.png" height="50%" alt="App Example 9"/>
+  <img src="img/example2_8.png" width="50%" alt="App Example 8"/>
+  <img src="img/example2_9.png" width="50%" alt="App Example 9"/>
 </p>
