@@ -251,7 +251,7 @@ The user can also select the number of points and boundaries on the x-axis, if t
 
 <h2>📙&nbsp;About</h2>
 
-In this version it was necessary to add the third tab and to download the corresponding archive with files, add files to the project.
+In this version it was necessary to add new tab and to download the corresponding archive with files, add files to the project.
 
 Subject area - `Books`.
 
@@ -316,4 +316,34 @@ If the connection is successful, all the necessary data will be displayed on the
   <img src="img/example4_5.png" width="70%" alt="App Example 5"/>
   <img src="img/example4_6.png" width="70%" alt="App Example 6"/>
   <img src="img/example4_7.png" width="70%" alt="App Example 6"/>
+</p>
+
+<h1 align="center">Version 5.0</h1>
+
+<h2>📝&nbsp;Task</h2>
+
+1. Add new tab to the app. The screen of this tab will display a collection of pictures.
+2. Each cell in the collection will display an image. The width of the collection should be equal to the width of the screen, the contents of the collection are scrolled vertically.
+3. Make it possible to display images in the collection that the user will select from the system image gallery. Add a button (or any other control) that, when clicked, opens the view controller, which represents the system image gallery. After the user selects an image, the view controller representing the system image gallery closes, and the image is added and displayed in the collection.
+4. Grid for the location and relative size of collection cells:
+
+<p align="center">
+  <img src="img/grid.png" alt="Grid"/> &nbsp;&nbsp;
+</p>
+
+<h2>🎥&nbsp;How It Works</h2>
+
+[![Watch the video](https://i.imgur.com/B9rwas9.png)](https://drive.google.com/file/d/1i2xBOjtEJfjuHwtEEEi-a54wPZDhNtN4/view)
+
+<h2>📷&nbsp;Screenshots</h2>
+
+<p align="center">
+  <img src="img/example5_1.jpg" width="22%" alt="App Example 1"/> &nbsp;&nbsp;
+  <img src="img/example5_2.jpg" width="22%" alt="App Example 2"/>&nbsp;&nbsp;
+  <img src="img/example5_3.png" width="22%" alt="App Example 3"/>&nbsp;&nbsp;
+  <img src="img/example5_4.jpg" width="22%" alt="App Example 4"/>
+</p>
+&nbsp;
+<p align="center">
+  <img src="img/example5_5.png" width="70%" alt="App Example 5"/>
 </p>
