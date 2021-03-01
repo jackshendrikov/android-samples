@@ -11,9 +11,9 @@ Custom icons of all sizes have also been created for the application. The app al
 <h4>📷&nbsp;Screenshots</h4>
 
 <p align="center">
-  <img src="img/example1_1_1.jpg" width="32%" alt="App Example 1"/> &nbsp;&nbsp;&nbsp;
-  <img src="img/example1_1_2.jpg" width="32%" alt="App Example 2"/>&nbsp;&nbsp;&nbsp;
-  <img src="img/example1_1_3.jpg" width="32%" alt="App Example 3"/>
+  <img src="img/example1_1_1.jpg" width="30%" alt="App Example 1"/> &nbsp;&nbsp;&nbsp;
+  <img src="img/example1_1_2.jpg" width="30%" alt="App Example 2"/>&nbsp;&nbsp;&nbsp;
+  <img src="img/example1_1_3.jpg" width="30%" alt="App Example 3"/>
 </p>
 
 <h3 align="center">Version 1.2</h3>
@@ -229,19 +229,19 @@ The user can also select the number of points and boundaries on the x-axis, if t
 <h4>📷&nbsp;Screenshots</h4>
 
 <p align="center">
-  <img src="img/example2_1.png" width="32%" alt="App Example 1"/> &nbsp;&nbsp;&nbsp;
-  <img src="img/example2_2.png" width="32%" alt="App Example 2"/>&nbsp;&nbsp;&nbsp;
-  <img src="img/example2_3.png" width="32%" alt="App Example 3"/>
+  <img src="img/example2_1.png" width="30%" alt="App Example 1"/> &nbsp;&nbsp;&nbsp;
+  <img src="img/example2_2.png" width="30%" alt="App Example 2"/>&nbsp;&nbsp;&nbsp;
+  <img src="img/example2_3.png" width="30%" alt="App Example 3"/>
 </p>
 &nbsp;
 <p align="center">
-  <img src="img/example2_4.png" width="24%" alt="App Example 4"/> &nbsp;&nbsp;
-  <img src="img/example2_5.png" width="24%" alt="App Example 5"/>&nbsp;&nbsp;
-  <img src="img/example2_6.png" width="24%" alt="App Example 6"/>&nbsp;&nbsp;
-  <img src="img/example2_7.png" width="24%" alt="App Example 7"/>
+  <img src="img/example2_4.png" width="22%" alt="App Example 4"/> &nbsp;&nbsp;
+  <img src="img/example2_5.png" width="22%" alt="App Example 5"/>&nbsp;&nbsp;
+  <img src="img/example2_6.png" width="22%" alt="App Example 6"/>&nbsp;&nbsp;
+  <img src="img/example2_7.png" width="22%" alt="App Example 7"/>
 </p>
 &nbsp;
 <p align="center">
-  <img src="img/example2_8.png" alt="App Example 8"/>
-  <img src="img/example2_9.png" alt="App Example 9"/>
+  <img src="img/example2_8.png" height="50%" alt="App Example 8"/>
+  <img src="img/example2_9.png" height="50%" alt="App Example 9"/>
 </p>
