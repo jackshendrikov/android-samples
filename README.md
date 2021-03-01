@@ -1,14 +1,14 @@
 # Programming of Mobile Systems
 
-<h3 align="center">Version 1.1</h3>
+<h1 align="center">Version 1.1</h1>
 
-<h4>📙&nbsp;About</h4>
+<h2>📙&nbsp;About</h2>
 
 In this version, we considered the construction of the simplest program for Android with the output of the text about the author. We've also added custom styles to enhance the look, which includes 2 themes: light and dark, which change the slide of the screen left or right.
 
 Custom icons of all sizes have also been created for the application. The app also contains a button that leads to my own portfolio for possible review.
 
-<h4>📷&nbsp;Screenshots</h4>
+<h2>📷&nbsp;Screenshots</h2>
 
 <p align="center">
   <img src="img/example1_1_1.jpg" width="30%" alt="App Example 1"/> &nbsp;&nbsp;&nbsp;
@@ -16,9 +16,9 @@ Custom icons of all sizes have also been created for the application. The app al
   <img src="img/example1_1_3.jpg" width="30%" alt="App Example 3"/>
 </p>
 
-<h3 align="center">Version 1.2</h3>
+<h1 align="center">Version 1.2</h1>
 
-<h4>📝&nbsp;Part 1</h4>
+<h2>📝&nbsp;Part 1</h2>
 
 The first part of the work is to perform certain tasks with a list of students. Code for the task is [here](1_2_additional_assignment/Contents_Shendrikov.py).
 
@@ -163,7 +163,7 @@ print("\n\tTask 5:\n", passed_per_group)
 
 </details>
 
-<h4>📝&nbsp;Part 2</h4>
+<h2>📝&nbsp;Part 2</h2>
 
 <details>
   <summary>Task</summary><p align="left">
@@ -207,9 +207,9 @@ Main code for Part 2 is [here](https://github.com/JackShen1/android-samples/tree
 Unit-tests for Part 2 is [here](https://github.com/JackShen1/android-samples/tree/main/app/src/test/java/ua/kpi/comsys/io8227/jackshen/coordinateJS/calculator/coordinateJS).
 
 
-<h3 align="center">Version 2.0</h3>
+<h1 align="center">Version 2.0</h1>
 
-<h4>📙&nbsp;About</h4>
+<h2>📙&nbsp;About</h2>
 
 In this version, it was necessary to create a second tab for the application, which displays the views in which drawing is implemented. The views show:
 
@@ -226,7 +226,7 @@ The user can also select the number of points and boundaries on the x-axis, if t
 
 `ToggleButton` is implemented with animation, when switching to another position, the slider flows into the appropriate corner. `Pie Chart` is highlighted when the appropriate area is selected, and can rotate clockwise or counterclockwise.
 
-<h4>📷&nbsp;Screenshots</h4>
+<h2>📷&nbsp;Screenshots</h2>
 
 <p align="center">
   <img src="img/example2_1.png" width="30%" alt="App Example 1"/> &nbsp;&nbsp;&nbsp;
@@ -242,6 +242,38 @@ The user can also select the number of points and boundaries on the x-axis, if t
 </p>
 &nbsp;
 <p align="center">
-  <img src="img/example2_8.png" width="50%" alt="App Example 8"/>
-  <img src="img/example2_9.png" width="50%" alt="App Example 9"/>
+  <img src="img/example2_8.png" width="70%" alt="App Example 8"/>
+  <img src="img/example2_9.png" width="70%" alt="App Example 9"/>
+</p>
+
+
+<h1 align="center">Version 3.0</h1>
+
+<h2>📙&nbsp;About</h2>
+
+In this version it was necessary to add the third tab and to download the corresponding archive with files, add files to the project.
+
+Subject area - `Books`.
+
+Next, create a class that represents the model entity of a particular subject area (`Book`). Add the appropriate fields and initializers to the class.
+
+In this implementation, the `JSON` file with the data about the books is downloaded from the server via HTTP-request, the functionality for this, as well as for file parsing is registered in the class `BookJSONParser`.
+
+The application also checks if the device is connected to the Internet and responds accordingly. The result of the request is checked for a failed response from the server or its absence.
+
+The network call takes place outside the thread of the user interface using `AsyncTask`. `ListView` is populated with information from the `JSON` response. In the absence of data for display the application shows `TextView` with the corresponding message `(No books to display)`.
+
+If the connection is successful, all the necessary data will be displayed on the screen. The code was carefully documented and the purpose of each method, class, variable was described.
+
+
+<h2>📷&nbsp;Screenshots</h2>
+
+<p align="center">
+  <img src="img/example3_1.jpg" width="42%" alt="App Example 1"/> &nbsp;&nbsp;&nbsp;
+  <img src="img/example3_2.png" width="42%" alt="App Example 2"/>
+</p>
+&nbsp;
+<p align="center">
+  <img src="img/example3_3.png" width="70%" alt="App Example 3"/>
+  <img src="img/example3_4.png" width="70%" alt="App Example 4"/>
 </p>
