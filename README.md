@@ -277,3 +277,43 @@ If the connection is successful, all the necessary data will be displayed on the
   <img src="img/example3_3.png" width="70%" alt="App Example 3"/>
   <img src="img/example3_4.png" width="70%" alt="App Example 4"/>
 </p>
+
+
+<h1 align="center">Version 4.0</h1>
+
+<h2>📝&nbsp;Task</h2>
+
+1. Expand the class created in the previous work that represents the model entity: add new fields to the class.
+2. Add a new screen that displays complete entity information. When you click on a row of a table with a list of entities, a screen should open with complete information about the corresponding entity (complete information about the entity is read from the files).
+3. Add a search box to the entity list screen. After entering the query, you must display a filtered list of entities. You can filter on any field of the entity. In the example at the end of the document, filtering occurs by entity name. If the filtered list is empty, you must display a message to that effect.
+4. Add a new screen to add a new entity to the list. When creating an entity, use only the base fields that are required to display in the entity list. Remember to validate the fields: for example, the year (for a movie) and the price (for a book) can only be numeric. The created movie essence must be added to the existing list and displayed in the table.
+5. Add functionality to remove an entity from the book list.
+6. Make sure you can start the project and that everything works correctly.
+
+<h2>📙&nbsp;Implemantation</h2>
+
+1. In the previous work it was decided not to go the easy way, but to complicate the task and `JSON` file with book data was downloaded from the server via `HTTP`-request, but in this work this approach was inconvenient, so reading `JSON`-files was done from a folder. At the same time, the general architecture has not changed much, the previous implementation will remain on further versions, where it will come in handy. But you still need the Internet to upload images, because they are taken from `Imgur`.
+2. A new screen has also been added to display the full entity information that opens when you click on a row in the entity list table.
+3. Added search box to the screen with a list of entities. After entering the query, the result is displayed as a list of entities filtered by the title of the book. If the filtered list is empty, a message is displayed.
+4. Added a new screen to add a new entity to the list. When creating an entity, fields such as `title`, `subtitle`, `price`, `isbn`, `rating` are used. Required fields are title and price. The `ISBN` may be blank, but if the user wants to enter it, he must enter 13 digits, no more, no less. Price is checked for correctness. The created essence of the book is added to the existing list and displayed in the table.
+5. Added functionality to remove an entity from the list of books by swiping left.
+6. Therefore, all the necessary functionality was added and tested, and the code was carefully documented and the purpose of each method, class, variable was described.
+
+<h2>🎥&nbsp;How It Works</h2>
+
+[![Watch the video](https://i.imgur.com/JEehcYU.png)](https://drive.google.com/file/d/1YsU-yvkw9KQDiIZami0rRvTBH-2Nz6CD/view)
+
+<h2>📷&nbsp;Screenshots</h2>
+
+<p align="center">
+  <img src="img/example4_1.png" width="22%" alt="App Example 1"/> &nbsp;&nbsp;
+  <img src="img/example4_2.png" width="22%" alt="App Example 2"/>&nbsp;&nbsp;
+  <img src="img/example4_3.png" width="22%" alt="App Example 3"/>&nbsp;&nbsp;
+  <img src="img/example4_4.png" width="22%" alt="App Example 4"/>
+</p>
+&nbsp;
+<p align="center">
+  <img src="img/example4_5.png" width="70%" alt="App Example 5"/>
+  <img src="img/example4_6.png" width="70%" alt="App Example 6"/>
+  <img src="img/example4_7.png" width="70%" alt="App Example 6"/>
+</p>
