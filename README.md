@@ -335,6 +335,7 @@ If the connection is successful, all the necessary data will be displayed on the
 
 [![Watch the video](https://i.imgur.com/B9rwas9.png)](https://drive.google.com/file/d/1i2xBOjtEJfjuHwtEEEi-a54wPZDhNtN4/view)
 
+
 <h2>📷&nbsp;Screenshots</h2>
 
 <p align="center">
@@ -346,4 +347,60 @@ If the connection is successful, all the necessary data will be displayed on the
 &nbsp;
 <p align="center">
   <img src="img/example5_5.png" width="70%" alt="App Example 5"/>
+</p>
+
+<h1 align="center">Version 6.0</h1>
+
+<h2>📝&nbsp;Task</h2>
+
+1. Add functionality to download data from the network for the contents of the last two tabs in the application (list of entities, detailed information about the entity, image collection).
+2. Modify the logic of displaying the list of entities in the book search tab:
+	* when entering the screen, an empty list of entities is displayed;
+	* if you enter a query in the search field, you must download a list of entities from the network for this query and display it;
+	* the list should be loaded only if at least 3 characters are entered in the search field, otherwise an empty list should be displayed;
+	* The URL for retrieving data is `https://api.itbook.store/1.0/search/REQUEST`, where `REQUEST` is a query from the search box.
+	* add an activity indicator animation when loading data.
+3. Modify the logic of the screen display with complete information about the essence:
+	* when you click on a cell in the table with a list of entities, you must download complete information about the entity from the network and open the screen where this information will be displayed;
+	* The URL for retrieving the data is `https://api.itbook.store/1.0/books/IDENTIFIER`, where `IDENTIFIER` is the identifier of the corresponding book (field isbn13 from the essence of the book)
+	* add an activity indicator animation when loading data.
+4. Modify the logic of displaying the image collection on the image tab:
+	* when entering the screen, an empty collection of images is displayed, then you need to download a list of images from the network and display it;
+	* Use the following URL to retrieve data: `https://pixabay.com/api/?key=API_KEY&q=REQUEST&image_type=photo&per_page=COUNT`, where `API_KEY` - 19193969-87191e5db266905fe8936d565, where `REQUEST` - `“hot + summer”`, `COUNT` - `24`
+	* add an activity indicator animation when loading data.
+5. Please note that it is possible to enter non-Latin letters or special characters in the search field, so you need to provide a situation so that the application handles it correctly.
+
+<h2>📙&nbsp;Implemantation</h2>
+
+1. In this version, the functionality of downloading data from the network for the content of the last two tabs in the application (list of books, list of images) has been added.
+2. When you enter the screen with a list of books, an empty list of entities is displayed, if you enter a query in the search field, the list of entities from the network for this query is loaded and displayed. The download occurs if at least 3 characters are entered in the search field, otherwise an empty list is displayed. When you click on a cell in a table with a list of entities about books, a form with complete information about the book from the network is loaded. When you slide to the left, the entity is deleted.
+3. When you enter the screen with a list of images, an empty list of entities is displayed, if you enter a query in the search field, the list of images from the network for this query is loaded and displayed. Uploading occurs when at least 3 characters are entered in the search box, otherwise an empty list of images is displayed. An image grid was designed according to the variant. When you click on the image, a form is downloaded with complete information about the image from the network (likes, saving, image size, number of downloads). It is also possible to download images to your phone. The `Picasso` library was used to cache images and upload them efficiently.
+
+<h2>🎥&nbsp;How It Works</h2>
+
+[![Watch the video](https://i.imgur.com/TNiJg8a.png)](https://drive.google.com/file/d/1wH-PQT7x-dYSeUbyBghcjaHv44Cp22xD/view?usp=sharing)
+
+<h2>📷&nbsp;Screenshots</h2>
+
+<p align="center">
+  <img src="img/example6_1.png" width="22%" alt="App Example 1"/> &nbsp;&nbsp;
+  <img src="img/example6_2.png" width="22%" alt="App Example 2"/>&nbsp;&nbsp;
+  <img src="img/example6_3.png" width="22%" alt="App Example 3"/>&nbsp;&nbsp;
+  <img src="img/example6_4.png" width="22%" alt="App Example 4"/>
+</p>
+&nbsp;
+<p align="center">
+  <img src="img/example6_9.png" width="70%" alt="App Example 5"/>
+  <img src="img/example6_10.png" width="70%" alt="App Example 6"/>
+</p>
+&nbsp;
+<p align="center">
+  <img src="img/example6_5.png" width="22%" alt="App Example 7"/> &nbsp;&nbsp;
+  <img src="img/example6_6.jpg" width="22%" alt="App Example 8"/>&nbsp;&nbsp;
+  <img src="img/example6_6.png" width="22%" alt="App Example 9"/>&nbsp;&nbsp;
+  <img src="img/example6_7.png" width="22%" alt="App Example 10"/>
+</p>
+&nbsp;
+<p align="center">
+  <img src="img/example6_8.png" width="70%" alt="App Example 11"/>
 </p>
