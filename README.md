@@ -112,11 +112,11 @@
   <img src="img/example6_5.png" width="22%" alt="App Example 7"/> &nbsp;&nbsp;
   <img src="img/example6_6.jpg" width="22%" alt="App Example 8"/>&nbsp;&nbsp;
   <img src="img/example6_6.png" width="22%" alt="App Example 9"/>&nbsp;&nbsp;
-  <img src="img/example6_7.png" width="22%" alt="App Example 10"/>
+  <img src="img/example6_7.jpg" width="22%" alt="App Example 10"/>
 </p>
 &nbsp;
 <p align="center">
-  <img src="img/example6_8.png" width="70%" alt="App Example 11"/>
+  <img src="img/example6_8.jpg" width="70%" alt="App Example 11"/>
 </p>
 
 <h1 align="center">Version 5.0</h1>
